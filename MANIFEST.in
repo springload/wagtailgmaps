@@ -1,0 +1,2 @@
+include README
+recursive-include wagtailgmaps *.py *.html *.js *.css *.scss

@@ -1,0 +1,23 @@
+<fieldset>
+    <legend>{{ self.heading }}</legend>
+    {% if self.form.non_field_errors and self.classname == 'show-non-field-errors' %}
+        <ul class="errors">
+        {% for error in self.form.non_field_errors %}
+            <li><p class="error-message"><span>{{ error }}</span></li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+    <ul class="fields">
+        {% for child in self.children %}
+            <li class="{{ child.classes|join:" " }}">
+                {{ child.render_as_field }}
+                {% for class in child.classes %}
+                   {% ifequal class 'gmap' %}
+                        {% load wagtailgmaps_tags %}
+                        {% map_editor child.bound_field.value 100 "%" 300 "px" 8 %}
+                    {% endifequal %}
+                {% endfor %}
+            </li>
+        {% endfor %}
+    </ul>
+</fieldset>
