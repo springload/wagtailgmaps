@@ -1,0 +1,30 @@
+<!doctype html>
+{% load compress %}
+<html class="no-js" lang="{{ LANGUAGE_CODE|default:"en-gb" }}">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>Wagtail - {% block titletag %}{% endblock %}</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <script src="{{ STATIC_URL }}wagtailadmin/js/vendor/modernizr-2.6.2.min.js"></script>
+
+    {% compress css %}
+        <link rel="stylesheet" href="{{ STATIC_URL }}wagtailadmin/scss/normalize.css" />
+    {% endcompress %}
+
+    {% block css %}{% endblock %}
+    {% block js %}{% endblock %}
+</head>
+<body class="{% block bodyclass %}{% endblock %} {% if messages %}has-messages{% endif %}">
+    <!--[if lt IE 9]>
+        <p class="browsermessage">You are using an <strong>outdated</strong> browser not supported by this software. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a>.</p>
+    <![endif]-->
+
+    <div class="wrapper">
+       {% block furniture %}{% endblock %}
+    </div>
+
+</body>
+</html>

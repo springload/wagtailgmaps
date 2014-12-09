@@ -13,8 +13,7 @@ def test_tag(text, moretext):
 # Map template
 @register.inclusion_tag('wagtailgmaps/map_editor.html')
 def map_editor(address, width, width_units, height, height_units, zoom):
-
-    if address is None:
+    if (address is None) or (address == ""):
         address = settings.WAGTAIL_ADDRESS_MAP_CENTER
 
     map_id = uuid.uuid4()  # Something a bit simpler would be probably ok too..

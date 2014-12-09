@@ -1,4 +1,4 @@
-jQuery(document).ready(function() {
+$(document).ready(function() {
   
   google.maps.event.addDomListener(window, 'load', function() {
   
