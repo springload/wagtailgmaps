@@ -10,10 +10,15 @@
     {% block extra_css %}{% endblock %}
 {% endblock %}
 
-{% block js %}
+{% block head_js %}
     <script src="https://maps.google.com/maps/api/js?sensor=false"></script>
     {% compress js %}
         <script src="{{ STATIC_URL }}wagtailadmin/js/vendor/jquery-1.10.3.js"></script>
+    {% endcompress %}
+{% endblock %}
+
+{% block js %}
+    {% compress js %}
         <script src="{{ STATIC_URL }}wagtailadmin/js/vendor/jquery-ui-1.10.3.js"></script>
         <script src="{{ STATIC_URL }}wagtailadmin/js/vendor/jquery.datetimepicker.js"></script>
         <script src="{{ STATIC_URL }}wagtailadmin/js/vendor/jquery.autosize.js"></script>

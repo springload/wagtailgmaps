@@ -15,7 +15,7 @@
     {% endcompress %}
 
     {% block css %}{% endblock %}
-    {% block js %}{% endblock %}
+    {% block head_js %}{% endblock %}
 </head>
 <body class="{% block bodyclass %}{% endblock %} {% if messages %}has-messages{% endif %}">
     <!--[if lt IE 9]>
@@ -26,5 +26,6 @@
        {% block furniture %}{% endblock %}
     </div>
 
+    {% block js %}{% endblock %}
 </body>
 </html>
