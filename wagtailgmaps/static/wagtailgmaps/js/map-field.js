@@ -58,7 +58,7 @@ $(document).ready(function() {
           });
           
           // Event listeners to update map when press enter or tab
-          $(mapElem["input"]).bind("enterKey focusout",function(event) {
+          $(mapElem["input"]).bind("enterKey",function(event) {
             geocodeAddress($(this).val(), this, marker[map_key], map[map_key]);
           });
 
