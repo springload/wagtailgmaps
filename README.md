@@ -19,7 +19,7 @@ add wagtailgmaps to your `settings.py` in the INSTALLED_APPS section:
 ...
 ```
 
-Add default settings in your `settings.py` file:
+Add a couple of necessary constants in your `settings.py` file:
 
 ```
 ...
@@ -27,6 +27,7 @@ WAGTAIL_ADDRESS_MAP_CENTER = 'Wellington, New Zealand'
 WAGTAIL_ADDRESS_MAP_ZOOM = 8
 ...
 ```
+`WAGTAIL_ADDRESS_MAP_CENTER` must be a properly formatted address. Also, remember valid zoom levels go from 0 to 18. See [Map options](https://developers.google.com/maps/documentation/javascript/tutorial#MapOptions) for details.
 
 As for now, only fields using `FieldPanel` inside a `MultiFieldPanel` are supported. This is due to the lack of support of the `classname` attribute for other panel fields other than `MultiFieldPanel`.
 
@@ -47,6 +48,8 @@ The field gets updated according to the [Google Geocoding Service](https://devel
 * The map market gets dragged and dropped into a location (`dragend` JS event).
 * Click happens somewhere in the map (`click` JS event).
 * Return key is pressed after editing the field (`enterKey` JS event for return key only).
+
+Feel free to edit the provided JS to add/edit the events you might need.
 
 Once your address field is properly formatted and stored in the database you can use it in your front end Django templates. Example:
 
