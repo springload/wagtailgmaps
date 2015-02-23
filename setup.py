@@ -29,7 +29,7 @@ install_requires = [
 setup(
     name='wagtailgmaps',
     version=__version__,
-    description='Googlemaps for address fields in Wagtail',
+    description='Google Maps widget for address fields in Wagtail',
     author='Jordi J. Tablada',
     author_email='jordi@springload.co.nz',
     url='https://github.com/springload/wagtailgmaps/',

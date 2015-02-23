@@ -1,24 +1,25 @@
 wagtailgmaps
 ==================
 
-Maps for Wagtail address fields
+![Wagtailgmaps screenshot](http://i.imgur.com/9m9Gfcf.png)
+
+Simple Google Maps address formatter for Wagtail fields.
 
 # Quickstart
 
-``` $ pip install wagtailgmaps [GITHUB SSH URI]```
+``` $ pip pip install -e git+git@github.com:springload/wagtailgmaps#egg=wagtailgmaps```
 
-add wagtailgmaps to your settings.py in the INSTALLED_APPS section:
+add wagtailgmaps to your `settings.py` in the INSTALLED_APPS section:
 
 ```
 ...
     'modelcluster',
     'wagtailgmaps',
-    'core',
     'wagtail.contrib.wagtailsitemaps',
 ...
 ```
 
-Add default settings:
+Add default settings in your `settings.py` file:
 
 ```
 ...
@@ -27,10 +28,28 @@ WAGTAIL_ADDRESS_MAP_ZOOM = 8
 ...
 ```
 
-Set class in your panel:
+As for now, only fields using `FieldPanel` inside a `MultiFieldPanel` are supported. This is due to the lack of support of the `classname` attribute for other panel fields other than `MultiFieldPanel`.
+
+In your `models.py`, your custom Page model would have something similar to:
 
 ```
-FieldPanel('address', classname="gmap")
+address_panels = MultiFieldPanel([
+    FieldPanel('address', classname="gmap"),
+], heading="Street Address")
 ```
 
-Yuuhuuu!
+Notice the `FieldPanel` is embedded in a `MultiFieldPanel`, even if it only contains a single element. If you define your `FieldPanel` outside it won't work. The app supports more than one map (field) at the same time.
+
+When editing the model from the admin interface the affected field shows up with a map, like the screenshot above.
+
+The field gets updated according to the [Google Geocoding Service](https://developers.google.com/maps/documentation/geocoding/) each time:
+
+* The map market gets dragged and dropped into a location (`dragend` JS event).
+* Click happens somewhere in the map (`click` JS event).
+* Return key is pressed after editing the field (`enterKey` JS event for return key only).
+
+Once your address field is properly formatted and stored in the database you can use it in your front end Django templates. Example:
+
+```
+<a href="http://maps.google.com/?q={{ address }}">Open map</a>
+```

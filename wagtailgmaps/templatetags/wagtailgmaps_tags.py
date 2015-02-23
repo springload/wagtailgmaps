@@ -5,14 +5,12 @@ import uuid
 register = template.Library()
 
 
-@register.inclusion_tag('wagtailgmaps/test.html')
-def test_tag(text, moretext):
-    return {'var': text, 'var2': uuid.uuid4()}
-
-
 # Map template
 @register.inclusion_tag('wagtailgmaps/map_editor.html')
 def map_editor(address, width, width_units, height, height_units, zoom):
+    """
+    Tag to output a Google Map with the given attributes
+    """
     if (address is None) or (address == ""):
         address = settings.WAGTAIL_ADDRESS_MAP_CENTER
 

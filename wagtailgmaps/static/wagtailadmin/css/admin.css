@@ -1,0 +1,4 @@
+/* Avoid default max-width: 100%; to display map controls correctly */
+li.gmap img {
+    max-width: none;
+}
