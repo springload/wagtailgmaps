@@ -5,21 +5,16 @@
     {% compress css %}
         <link rel="stylesheet" href="{{ STATIC_URL }}wagtailadmin/scss/vendor/jquery-ui/jquery-ui-1.10.3.verdant.css" type="text/css" />
         <link rel="stylesheet" href="{{ STATIC_URL }}wagtailadmin/scss/core.scss" type="text/x-scss" />
-        <link rel="stylesheet" href="{{ STATIC_URL }}wagtailadmin/css/admin.css" type="text/css" />
+        <link rel="stylesheet" href="{{ STATIC_URL }}wagtailgmaps/css/admin.css" type="text/css" />
     {% endcompress %}
 
     {% block extra_css %}{% endblock %}
 {% endblock %}
 
-{% block head_js %}
-    <script src="https://maps.google.com/maps/api/js?sensor=false"></script>
+{% block js %}
+     <script src="https://maps.google.com/maps/api/js?sensor=false"></script>
     {% compress js %}
         <script src="{{ STATIC_URL }}wagtailadmin/js/vendor/jquery-1.10.3.js"></script>
-    {% endcompress %}
-{% endblock %}
-
-{% block js %}
-    {% compress js %}
         <script src="{{ STATIC_URL }}wagtailadmin/js/vendor/jquery-ui-1.10.3.js"></script>
         <script src="{{ STATIC_URL }}wagtailadmin/js/vendor/jquery.datetimepicker.js"></script>
         <script src="{{ STATIC_URL }}wagtailadmin/js/vendor/jquery.autosize.js"></script>

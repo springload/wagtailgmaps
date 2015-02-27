@@ -86,11 +86,23 @@ $(document).ready(function() {
     };
 
     // Trigger the event so the maps can start doing their things
-    $.event.trigger({
-      type:    "wagtailmaps_ready",
-      message: "WagtailMaps are ready to be used!",
-      time:    new Date()
-    });
+    var event; // The custom event that will be created
+
+    if (document.createEvent) {
+      event = document.createEvent("HTMLEvents");
+      event.initEvent("wagtailmaps_ready", true, true);
+    } else {
+      event = document.createEventObject();
+      event.eventType = "wagtailmaps_ready";
+    }
+
+    event.eventName = "wagtailmaps_ready";
+
+    if (document.createEvent) {
+      document.dispatchEvent(event);
+    } else {
+      document.fireEvent("on" + event.eventType, event);
+    }
 
   });
 

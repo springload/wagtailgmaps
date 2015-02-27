@@ -12,8 +12,7 @@
     {% if address %}
         params["{{ map_id }}"]["address"] = "{{ address }}";
     {% endif %}
-    
-    $(document).bind('wagtailmaps_ready',  function(event){
+    document.addEventListener('wagtailmaps_ready',  function(event){
         // Wait until all the maps related functions are available and ready
         initialize_map(params["{{ map_id }}"]);
     });
