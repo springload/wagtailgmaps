@@ -7,7 +7,9 @@ Simple Google Maps address formatter for Wagtail fields.
 
 # Quickstart
 
-``` $ pip install git+git://github.com:springload/wagtailgmaps@0.1#egg=wagtailgmaps```
+Assuming you have a [Wagtail](https://wagtail.io/) project up and running:
+
+``` $ pip install wagtailgmaps```
 
 add wagtailgmaps to your `settings.py` in the INSTALLED_APPS section:
 

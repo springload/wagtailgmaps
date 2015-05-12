@@ -1,43 +1,29 @@
-#!/usr/bin/env python
+import os
+from setuptools import setup
 
-import sys, os
+with open(os.path.join(os.path.dirname(__file__), 'README.md')) as readme:
+    README = readme.read()
 
-from wagtail.wagtailcore import __version__
-
-
-try:
-    from setuptools import setup, find_packages
-except ImportError:
-    from distutils.core import setup
-
-
-# Hack to prevent "TypeError: 'NoneType' object is not callable" error
-# in multiprocessing/util.py _exit_function when setup.py exits
-# (see http://www.eby-sarna.com/pipermail/peak/2010-May/003357.html)
-try:
-    import multiprocessing
-except ImportError:
-    pass
-
-PY3 = sys.version_info[0] == 3
-
-
-install_requires = [
-    "Wagtail>=0.8.1",
-]
+# allow setup.py to be run from any path
+os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 
 setup(
     name='wagtailgmaps',
-    version=__version__,
+    version='0.2',
+    packages=['wagtailgmaps'],
+    include_package_data=True,
+    license='BSD License',
     description='Google Maps widget for address fields in Wagtail',
+    long_description=README,
+    url='https://github.com/springload/wagtailgmaps/',
     author='Jordi J. Tablada',
     author_email='jordi@springload.co.nz',
-    url='https://github.com/springload/wagtailgmaps/',
-    packages=find_packages(),
-    include_package_data=True,
-    license='BSD',
-    long_description=open('README.md').read(),
     classifiers=[
+        'Environment :: Web Environment',
+        'Framework :: Django',
+        'Intended Audience :: Developers',
+        'License :: OSI Approved :: BSD License',
+        'Operating System :: OS Independent',
         'Programming Language :: Python',
         'Programming Language :: Python :: 2',
         'Programming Language :: Python :: 2.6',
@@ -46,8 +32,7 @@ setup(
         'Programming Language :: Python :: 3.2',
         'Programming Language :: Python :: 3.3',
         'Programming Language :: Python :: 3.4',
-        'Framework :: Django',
+        'Topic :: Internet :: WWW/HTTP',
+        'Topic :: Internet :: WWW/HTTP :: Dynamic Content',
     ],
-    install_requires=install_requires,
-    zip_safe=False,
 )
