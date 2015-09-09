@@ -1,7 +1,7 @@
 $(document).ready(function() {
-  
+
   google.maps.event.addDomListener(window, 'load', function() {
-  
+
     // One geocoder var to rule them all
     var geocoder = new google.maps.Geocoder();
 
@@ -11,7 +11,14 @@ $(document).ready(function() {
         latLng: pos
       }, function(responses) {
         if (responses && responses.length > 0) {
-            $(input).val(responses[0].formatted_address);
+            $input = $(input);
+            if ($input.hasClass('gmap--latlng')) {
+              $input.val(
+                String(results[0].geometry.location.lat) + ', ' + String(results[0].geometry.location.lng)
+              );
+            } else {
+              $input.val(results[0].formatted_address);
+            }
         } else {
           alert('Cannot determine address at this location.');
         }
@@ -23,7 +30,14 @@ $(document).ready(function() {
       geocoder.geocode({'address': address}, function(results, status) {
         if (status == google.maps.GeocoderStatus.OK) {
           marker.setPosition(results[0].geometry.location);
-          $(input).val(results[0].formatted_address);
+          $input = $(input);
+          if ($input.hasClass('gmap--latlng')) {
+            $input.val(
+              String(results[0].geometry.location.lat) + ', ' + String(results[0].geometry.location.lng)
+            );
+          } else {
+            $input.val(results[0].formatted_address);
+          }
           map.setCenter(results[0].geometry.location);
         } else {
           alert("Geocode was not successful for the following reason: " + status);
@@ -56,7 +70,7 @@ $(document).ready(function() {
             marker[map_key].setPosition(event.latLng);
             geocodePosition(marker[map_key].getPosition(), mapElem.input);
           });
-          
+
           // Event listeners to update map when press enter or tab
           $(mapElem.input).bind("enterKey",function(event) {
             geocodeAddress($(this).val(), this, marker[map_key], map[map_key]);
@@ -73,7 +87,7 @@ $(document).ready(function() {
 
     // Method to initialize a map and all of its related components (usually address input and marker)
     window.initialize_map = function (params) {
-        
+
         // Get latlong form address to initialize map
         geocoder.geocode( { "address": params.address}, function(results, status) {
           if (status == google.maps.GeocoderStatus.OK) {
@@ -106,4 +120,4 @@ $(document).ready(function() {
 
   });
 
-}); 
+});
