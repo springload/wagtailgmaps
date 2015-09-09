@@ -14,10 +14,10 @@ $(document).ready(function() {
             $input = $(input);
             if ($input.hasClass('gmap--latlng')) {
               $input.val(
-                String(results[0].geometry.location.lat) + ', ' + String(results[0].geometry.location.lng)
+                String(responses[0].geometry.location.lat) + ', ' + String(responses[0].geometry.location.lng)
               );
             } else {
-              $input.val(results[0].formatted_address);
+              $input.val(responses[0].formatted_address);
             }
         } else {
           alert('Cannot determine address at this location.');
