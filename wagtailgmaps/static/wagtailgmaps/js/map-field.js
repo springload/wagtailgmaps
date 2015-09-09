@@ -12,9 +12,9 @@ $(document).ready(function() {
       }, function(responses) {
         if (responses && responses.length > 0) {
             $input = $(input);
-            if ($input.closest('gmap').hasClass('gmap--latlng')) {
+            if ($input.closest('.gmap').hasClass('gmap--latlng')) {
               $input.val(
-                String(responses[0].geometry.location.lat) + ', ' + String(responses[0].geometry.location.lng)
+                String(responses[0].geometry.location.lat()) + ', ' + String(responses[0].geometry.location.lng())
               );
             } else {
               $input.val(responses[0].formatted_address);
@@ -31,9 +31,9 @@ $(document).ready(function() {
         if (status == google.maps.GeocoderStatus.OK) {
           marker.setPosition(results[0].geometry.location);
           $input = $(input);
-          if ($input.closest('gmap').hasClass('gmap--latlng')) {
+          if ($input.closest('.gmap').hasClass('gmap--latlng')) {
             $input.val(
-              String(results[0].geometry.location.lat) + ', ' + String(results[0].geometry.location.lng)
+              String(results[0].geometry.location.lat()) + ', ' + String(results[0].geometry.location.lng())
             );
           } else {
             $input.val(results[0].formatted_address);
