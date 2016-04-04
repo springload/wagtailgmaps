@@ -18,3 +18,17 @@ def editor_js():
     )
 
     return js_includes
+
+
+@hooks.register('insert_global_admin_css')
+def admin_css():
+    """
+    Add extra CSS files to the admin
+    """
+    css_files = [
+        'wagtailadmin/css/admin.css',
+    ]
+
+    css_includes = format_html_join(
+        '\n', '<link rel="stylesheet" href="{0}{1}">', ((settings.STATIC_URL, filename) for filename in css_files))
+    return css_includes

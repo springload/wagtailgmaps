@@ -11,13 +11,18 @@ Assuming you have a [Wagtail](https://wagtail.io/) project up and running:
 
 ``` $ pip install wagtailgmaps```
 
-add wagtailgmaps to your `settings.py` in the INSTALLED_APPS section:
+add `wagtailgmaps` and `overextends` to your `settings.py` before any wagtail apps in the INSTALLED_APPS section:
 
 ```
-...
-    'modelcluster',
+    .
+    .
+    'overextends',
     'wagtailgmaps',
-    'wagtail.contrib.wagtailsitemaps',
+    'wagtail.wagtailcore',
+    'wagtail.wagtailadmin',
+    .
+    .
+    .
 ...
 ```
 
