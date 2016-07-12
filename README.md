@@ -32,9 +32,12 @@ Add a couple of necessary constants in your `settings.py` file:
 ...
 WAGTAIL_ADDRESS_MAP_CENTER = 'Wellington, New Zealand'
 WAGTAIL_ADDRESS_MAP_ZOOM = 8
+WAGTAIL_ADDRESS_MAP_KEY = 'xxx'
 ...
 ```
 `WAGTAIL_ADDRESS_MAP_CENTER` must be a properly formatted address. Also, remember valid zoom levels go from 0 to 18. See [Map options](https://developers.google.com/maps/documentation/javascript/tutorial#MapOptions) for details.
+
+As of June 22 2016, Google maps requires an API key. See how to [Get a key](https://developers.google.com/maps/documentation/javascript/get-api-key). While you're there, you'll also need to enable the [Geocoding Service](https://developers.google.com/maps/documentation/javascript/geocoding).
 
 As for now, only fields using `FieldPanel` inside a `MultiFieldPanel` are supported. This is due to the lack of support of the `classname` attribute for other panel fields other than `MultiFieldPanel`.
 

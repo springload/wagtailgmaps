@@ -1,6 +1,7 @@
 {% overextends "wagtailadmin/admin_base.html" %}
+{% load wagtailgmaps_tags %}
 
 {% block js %}
-    <script src="https://maps.google.com/maps/api/js"></script>
+    {% google_maps_script %}
     {{ block.super }}
 {% endblock %}
