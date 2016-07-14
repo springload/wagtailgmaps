@@ -26,7 +26,7 @@ def admin_css():
     Add extra CSS files to the admin
     """
     css_files = [
-        'wagtailadmin/css/admin.css',
+        'wagtailgmaps/css/admin.css',
     ]
 
     css_includes = format_html_join(
