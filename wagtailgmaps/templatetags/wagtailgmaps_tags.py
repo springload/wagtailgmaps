@@ -2,6 +2,7 @@ import uuid
 
 from django import template
 from django.conf import settings
+from django.utils.safestring import mark_safe
 
 register = template.Library()
 
@@ -33,4 +34,4 @@ def map_editor(address, width, width_units, height, height_units, zoom):
 
 @register.simple_tag
 def google_maps_script():
-    return '<script src="https://maps.googleapis.com/maps/api/js?key={}"></script>'.format(settings.WAGTAIL_ADDRESS_MAP_KEY)
+    return mark_safe('<script src="https://maps.googleapis.com/maps/api/js?key={}"></script>'.format(settings.WAGTAIL_ADDRESS_MAP_KEY))
