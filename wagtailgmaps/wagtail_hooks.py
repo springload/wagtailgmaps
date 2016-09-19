@@ -1,6 +1,8 @@
-from wagtail.wagtailcore import hooks
 from django.conf import settings
+from django.contrib.staticfiles.templatetags.staticfiles import static
 from django.utils.html import format_html_join
+
+from wagtail.wagtailcore import hooks
 
 
 @hooks.register('insert_editor_js')
@@ -8,13 +10,13 @@ def editor_js():
     """
     Add extra JS files to the admin
     """
+
     js_files = [
-        'wagtailgmaps/js/map-field.js',
+        static('wagtailgmaps/js/map-field.js'),
     ]
     js_includes = format_html_join(
-        '\n',
-        '<script type="text/javascript" src="{0}{1}"></script>',
-        ((settings.STATIC_URL, filename) for filename in js_files)
+        '\n', '<script src="{0}"></script>',
+        ((filename,) for filename in js_files)
     )
 
     return js_includes
@@ -26,9 +28,12 @@ def admin_css():
     Add extra CSS files to the admin
     """
     css_files = [
-        'wagtailadmin/css/admin.css',
+        static('wagtailgmaps/css/admin.css'),
     ]
 
     css_includes = format_html_join(
-        '\n', '<link rel="stylesheet" href="{0}{1}">', ((settings.STATIC_URL, filename) for filename in css_files))
+        '\n', '<link rel="stylesheet" href="{0}">',
+        ((filename,) for filename in css_files)
+    )
+
     return css_includes

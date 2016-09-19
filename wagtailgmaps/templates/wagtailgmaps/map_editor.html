@@ -1,26 +1,28 @@
 <script type="text/javascript">
     // Declare var params only first time
     try {
-        if (!params){
+        if (!params) {
             var params = {};
         }
-    } catch(e) { 
+    } catch (e) {
         var params = {};
     }
     // Initialize the map after page loading. Pass all necessary params to identify everything related to this map
-    params["{{ map_id }}"] = {"map_id": "{{ map_id }}", "zoom": {{ zoom }} };
+    params["{{ map_id }}"] = {"map_id": "{{ map_id }}", "zoom": {{ zoom }}};
     {% if address %}
         params["{{ map_id }}"]["address"] = "{{ address }}";
     {% endif %}
-    document.addEventListener('wagtailmaps_ready',  function(event){
+    document.addEventListener('wagtailmaps_ready', function (event) {
         // Wait until all the maps related functions are available and ready
         initialize_map(params["{{ map_id }}"]);
     });
 
 </script>
 <br/>
-<div id="map-canvas-{{ map_id }}" {% if width %}style="width: {{ width }}{{ width_units }}; height: {{ height }}{{ height_units }};"{% endif %} class="map-googlemap">
+<div id="map-canvas-{{ map_id }}"
+     {% if width %}style="width: {{ width }}{{ width_units }}; height: {{ height }}{{ height_units }};"{% endif %}
+     class="map-googlemap">
     <noscript>
-    <img src="https://maps.google.com/maps/api/staticmap?center={{ address }}&zoom={{ zoom }}&size={{ width }}x{{ height }}&sensor=false">
+        <img src="https://maps.google.com/maps/api/staticmap?center={{ address }}&zoom={{ zoom }}&size={{ width }}x{{ height }}&sensor=false">
     </noscript>
 </div>
