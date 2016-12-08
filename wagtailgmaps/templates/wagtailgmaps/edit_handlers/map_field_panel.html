@@ -1,0 +1,23 @@
+<fieldset>
+    <legend>{{ self.heading }}</legend>
+    {% if self.form.non_field_errors and self.classname == 'show-non-field-errors' %}
+        <ul class="errors">
+        {% for error in self.form.non_field_errors %}
+            <li><p class="error-message"><span>{{ error }}</span></li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+    <ul class="fields">
+        {% for child in self.children %}
+            <li class="wagtailgmap {% if latlng %}wagtailgmap--latlng{% endif %} {{ child.classes|join:" " }}">
+                {{ child.render_as_field }}
+                <br/>
+                <div id="map-canvas-{{ map_id }}" {% if width %}style="width: {{ width }}{{ width_units }}; height: {{ height }}{{ height_units }};"{% endif %} class="map-googlemap">
+                    <noscript>
+                        <img src="https://maps.google.com/maps/api/staticmap?center={{ address }}&zoom={{ zoom }}&size={{ width }}x{{ height }}&sensor=false">
+                    </noscript>
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+</fieldset>
