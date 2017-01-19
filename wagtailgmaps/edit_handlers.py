@@ -9,6 +9,7 @@ from wagtail.wagtailadmin.edit_handlers import (
     widget_with_script,
 )
 
+
 def random_string(length=6, chars=string.ascii_lowercase):
     return ''.join(random.SystemRandom().choice(chars) for _ in range(length))
 
@@ -30,6 +31,13 @@ class BaseMapFieldPanel(BaseCompositeEditHandler):
                 self.centre = settings.WAGTAIL_ADDRESS_MAP_CENTER
             except AttributeError:
                 pass
+
+        try:
+            selected_location = self.children[0].form[self.fieldname].value()
+            if selected_location:
+                self.centre = selected_location
+        except KeyError:
+            pass
 
         map_id = random_string()
 
@@ -72,6 +80,7 @@ class MapFieldPanel(object):
         self.children = [
             FieldPanel(fieldname),
         ]
+        self.fieldname = fieldname
         self.heading = heading
         self.classname = classname
         self.centre = centre
@@ -82,6 +91,7 @@ class MapFieldPanel(object):
         return type(str('_MapFieldPanel'), (BaseMapFieldPanel,), {
             'model': model,
             'children': [child.bind_to_model(model) for child in self.children],
+            'fieldname': self.fieldname,
             'heading': self.heading,
             'classname': self.classname,
             'centre': self.centre,
