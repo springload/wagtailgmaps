@@ -1,10 +1,11 @@
-<script type="text/javascript">
+$(document).ready(function() {
+
     // Declare var params only first time
     try {
         if (!params) {
             var params = {};
         }
-    } catch (e) {
+    } catch(e) {
         var params = {};
     }
     // Initialize the map after page loading. Pass all necessary params to identify everything related to this map
@@ -17,12 +18,4 @@
         initialize_map(params["{{ map_id }}"]);
     });
 
-</script>
-<br/>
-<div id="map-canvas-{{ map_id }}"
-     {% if width %}style="width: {{ width }}{{ width_units }}; height: {{ height }}{{ height_units }};"{% endif %}
-     class="map-googlemap">
-    <noscript>
-        <img src="https://maps.google.com/maps/api/staticmap?center={{ address }}&zoom={{ zoom }}&size={{ width }}x{{ height }}&sensor=false">
-    </noscript>
-</div>
+});
