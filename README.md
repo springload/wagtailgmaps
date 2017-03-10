@@ -11,54 +11,46 @@ Assuming you have a [Wagtail](https://wagtail.io/) project up and running:
 
 ``` $ pip install wagtailgmaps```
 
-add `wagtailgmaps` and `overextends` to your `settings.py` before any wagtail apps in the INSTALLED_APPS section:
-
-```
-    .
-    .
-    'overextends',
-    'wagtailgmaps',
-    'wagtail.wagtailcore',
-    'wagtail.wagtailadmin',
-    .
-    .
-    .
-...
-```
+Add `wagtailgmaps` to your `settings.py` `INSTALLED_APPS` section.
 
 Add a couple of necessary constants in your `settings.py` file:
 
 ```
-...
 WAGTAIL_ADDRESS_MAP_CENTER = 'Wellington, New Zealand'
 WAGTAIL_ADDRESS_MAP_ZOOM = 8
-...
+WAGTAIL_ADDRESS_MAP_KEY = 'xxx'
 ```
+
 `WAGTAIL_ADDRESS_MAP_CENTER` must be a properly formatted address. Also, remember valid zoom levels go from 0 to 18. See [Map options](https://developers.google.com/maps/documentation/javascript/tutorial#MapOptions) for details.
 
-As for now, only fields using `FieldPanel` inside a `MultiFieldPanel` are supported. This is due to the lack of support of the `classname` attribute for other panel fields other than `MultiFieldPanel`.
+> As of June 22 2016, Google maps requires an API key. See how to [Get a key](https://developers.google.com/maps/documentation/javascript/get-api-key). While you're there, you'll also need to enable the [Geocoding Service](https://developers.google.com/maps/documentation/javascript/geocoding).
 
-In your `models.py`, your custom Page model would have something similar to:
-
-```
-address_panels = MultiFieldPanel([
-    FieldPanel('address', classname="gmap"),
-], heading="Street Address")
-```
-
-Notice the `FieldPanel` is embedded in a `MultiFieldPanel`, even if it only contains a single element. If you define your `FieldPanel` outside it won't work. The app supports more than one map (field) at the same time.
-
-If instead of outputting a formatted address, you want to output a LatLng, you should add `gmap--latlng` modifier class to the panel:
+wagtailgmaps expects a CharField (or any other field that renders as a text input) and comes with a MapFieldPanel. In your `models.py`, your custom Page model would have something similar to:
 
 ```
-latlng = models.CharField(max_length=255)
+address = models.CharField(max_length=255)
+...
 
-panels = [
-    MultiFieldPanel([
-        FieldPanel('latlng', classname="gmap gmap--latlng"),
-    ], heading="Map location"),
+content_panels = [
+    MapFieldPanel('address')
 ]
 ```
+
+Notice that the string you pass to the `MapFieldPanel` is the name of the field, just like when using `FieldPanels`.
+
+If instead of outputting a formatted address, you want to output a LatLng, you should add `latlng=True` to the panel:
+
+```
+MapFieldPanel('address', latlng=True)
+```
+
+All the options available are:
+
+ - `heading` - A custom heading in the admin, defaults to "Location"
+ - `classname` - Add extra css classes to the field
+ - `latlng` - Field returns a LatLng instead of an address
+ - `centre` - A custom override for this field
+ - `zoom` - A custom override for this field
 
 When editing the model from the admin interface the affected field shows up with a map, like the screenshot above.
 
