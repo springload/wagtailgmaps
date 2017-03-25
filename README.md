@@ -1,9 +1,11 @@
 wagtailgmaps
 ==================
 
-![Wagtailgmaps screenshot](http://i.imgur.com/9m9Gfcf.png)
+> Simple Google Maps address formatter and LatLng provider for Wagtail fields.
 
-Simple Google Maps address formatter and LatLng provider for Wagtail fields.
+*Check out [Awesome Wagtail](https://github.com/springload/awesome-wagtail) for more awesome packages and resources from the Wagtail community.*
+
+![Wagtailgmaps screenshot](http://i.imgur.com/9m9Gfcf.png)
 
 # Quickstart
 
