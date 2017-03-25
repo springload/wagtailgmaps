@@ -1,21 +1,22 @@
-wagtailgmaps
-==================
+# wagtailgmaps [![PyPI](https://img.shields.io/pypi/v/wagtailgmaps.svg)](https://pypi.python.org/pypi/wagtailgmaps)
 
-> Simple Google Maps address formatter and LatLng provider for Wagtail fields.
+> Simple Google Maps address formatter and LatLng provider for [Wagtail](https://wagtail.io/) fields.
 
 *Check out [Awesome Wagtail](https://github.com/springload/awesome-wagtail) for more awesome packages and resources from the Wagtail community.*
 
 ![Wagtailgmaps screenshot](./screenshot.png)
 
-# Quickstart
+## Quickstart
 
-Assuming you have a [Wagtail](https://wagtail.io/) project up and running:
+Assuming you have a Wagtail project up and running:
 
-``` $ pip install wagtailgmaps```
-
-add `wagtailgmaps` and `overextends` to your `settings.py` before any wagtail apps in the INSTALLED_APPS section:
-
+```sh
+pip install wagtailgmaps
 ```
+
+Addd `wagtailgmaps` and `overextends` to your `settings.py` before any wagtail apps in the `INSTALLED_APPS` section:
+
+```python
     .
     .
     'overextends',
@@ -30,19 +31,20 @@ add `wagtailgmaps` and `overextends` to your `settings.py` before any wagtail ap
 
 Add a couple of necessary constants in your `settings.py` file:
 
-```
+```python
 ...
 WAGTAIL_ADDRESS_MAP_CENTER = 'Wellington, New Zealand'
 WAGTAIL_ADDRESS_MAP_ZOOM = 8
 ...
 ```
+
 `WAGTAIL_ADDRESS_MAP_CENTER` must be a properly formatted address. Also, remember valid zoom levels go from 0 to 18. See [Map options](https://developers.google.com/maps/documentation/javascript/tutorial#MapOptions) for details.
 
 As for now, only fields using `FieldPanel` inside a `MultiFieldPanel` are supported. This is due to the lack of support of the `classname` attribute for other panel fields other than `MultiFieldPanel`.
 
 In your `models.py`, your custom Page model would have something similar to:
 
-```
+```python
 address_panels = MultiFieldPanel([
     FieldPanel('address', classname="gmap"),
 ], heading="Street Address")
@@ -52,7 +54,7 @@ Notice the `FieldPanel` is embedded in a `MultiFieldPanel`, even if it only cont
 
 If instead of outputting a formatted address, you want to output a LatLng, you should add `gmap--latlng` modifier class to the panel:
 
-```
+```python
 latlng = models.CharField(max_length=255)
 
 panels = [
@@ -66,7 +68,7 @@ When editing the model from the admin interface the affected field shows up with
 
 If using the address option, the field gets updated according to the [Google Geocoding Service](https://developers.google.com/maps/documentation/geocoding/) each time:
 
-* The map market gets dragged and dropped into a location (`dragend` JS event).
+* The map marker gets dragged and dropped into a location (`dragend` JS event).
 * Click happens somewhere in the map (`click` JS event).
 * Return key is pressed after editing the field (`enterKey` JS event for return key only).
 
@@ -74,12 +76,12 @@ Feel free to edit the provided JS to add/edit the events you might need.
 
 Once your address field is properly formatted and stored in the database you can use it in your front end Django templates. Example:
 
-```
+```html
 <a href="http://maps.google.com/?q={{ address }}">Open map</a>
 ```
 
 Or if you opted for the LatLng pair option:
 
-```
+```html
 <a href="http://maps.google.com/?q={{ latlng }}">Open map</a>
 ```
