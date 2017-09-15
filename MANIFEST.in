@@ -1,2 +1,4 @@
-include README.md
-recursive-include wagtailgmaps *.py *.html *.js *.css
+include LICENSE *.rst *.txt *.md
+recursive-include wagtailgmap *
+global-exclude __pycache__
+global-exclude *.py[co]
