@@ -1,7 +1,0 @@
-{% overextends "wagtailadmin/admin_base.html" %}
-{% load wagtailgmaps_tags %}
-
-{% block js %}
-    {% google_maps_script %}
-    {{ block.super }}
-{% endblock %}

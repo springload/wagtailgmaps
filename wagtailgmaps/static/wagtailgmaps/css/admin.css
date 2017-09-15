@@ -1,11 +1,11 @@
 /* Avoid default max-width: 100%; to display map controls correctly */
-li.gmap {
+li.wagtailgmap {
     overflow: hidden;
     -webkit-perspective: 1000;
     -moz-perspective: 1000;
     perspective: 1000;
 }
 
-li.gmap img {
+li.wagtailgmap img {
     max-width: none;
 }
