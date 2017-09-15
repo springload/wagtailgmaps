@@ -29,6 +29,20 @@ Addd `wagtailgmaps` and `overextends` to your `settings.py` before any wagtail a
 ...
 ```
 
+For Django 1.9+ you must add overextends to the builtins option of your TEMPLATES setting:
+
+```
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'builtins': ['overextends.templatetags.overextends_tags'],
+        }
+    },
+]
+```
+
 Add a couple of necessary constants in your `settings.py` file:
 
 ```python
