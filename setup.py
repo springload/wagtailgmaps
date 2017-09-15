@@ -9,7 +9,7 @@ os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 
 setup(
     name='wagtailgmaps',
-    version='0.2.6',
+    version='3.0.0',
     packages=['wagtailgmaps'],
     include_package_data=True,
     license='BSD License',
@@ -35,5 +35,4 @@ setup(
         'Topic :: Internet :: WWW/HTTP',
         'Topic :: Internet :: WWW/HTTP :: Dynamic Content',
     ],
-    install_requires=['django-overextends'],
 )
