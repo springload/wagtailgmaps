@@ -12,7 +12,7 @@ setup(
     version='0.3.0',
     packages=['wagtailgmaps'],
     include_package_data=True,
-    license='BSD License',
+    license='MIT',
     description='Google Maps widget for address fields in Wagtail',
     long_description=README,
     url='https://github.com/springload/wagtailgmaps/',
