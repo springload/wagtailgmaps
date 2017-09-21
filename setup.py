@@ -1,4 +1,7 @@
+from __future__ import absolute_import, unicode_literals
+
 import os
+
 from setuptools import setup
 
 with open(os.path.join(os.path.dirname(__file__), 'README.md')) as readme:
@@ -19,6 +22,7 @@ testing_extras = [
     # For coverage and PEP8 linting
     'coverage>=4.1.0,<4.2',
     'flake8>=3.2.0,<3.3',
+    'flake8-colors>=0.1.6,<1',
     'isort==4.2.5',
 
     # For test site

@@ -1,13 +1,13 @@
-import string
+from __future__ import absolute_import, unicode_literals
+
 import random
+import string
+
+from django.conf import settings
 from django.template.loader import render_to_string
 from django.utils.safestring import mark_safe
-from django.conf import settings
 from wagtail.wagtailadmin.edit_handlers import (
-    BaseCompositeEditHandler,
-    FieldPanel,
-    widget_with_script,
-)
+    BaseCompositeEditHandler, FieldPanel, widget_with_script)
 
 
 def random_string(length=6, chars=string.ascii_lowercase):
