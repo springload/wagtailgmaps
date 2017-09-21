@@ -17,6 +17,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [0.3] - 2017-09-21
 
+Thanks to @danreeves, @craigloftus, @urlsangel and @SalahAdDin for their contributions.
+
 ### Added
 
 - Dedicated `MapFieldPanel` edit handler
