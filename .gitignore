@@ -6,3 +6,9 @@ dist/
 *.egg-info
 *.log
 *.pot
+.venv
+*.sqlite3
+tests/testapp/var/media/
+.coverage
+coverage
+coverage_html_report/
