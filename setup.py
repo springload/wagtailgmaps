@@ -4,6 +4,8 @@ import os
 
 from setuptools import setup
 
+from wagtailgmaps import __version__
+
 with open(os.path.join(os.path.dirname(__file__), 'README.md')) as readme:
     README = readme.read()
 
@@ -36,7 +38,7 @@ documentation_extras = [
 
 setup(
     name='wagtailgmaps',
-    version='0.3.0',
+    version=__version__,
     packages=['wagtailgmaps'],
     include_package_data=True,
     license='MIT',

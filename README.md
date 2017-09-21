@@ -72,3 +72,15 @@ Or if you opted for the LatLng pair option:
 ```html
 <a href="http://maps.google.com/?q={{ latlng }}">Open map</a>
 ```
+
+## Development
+
+### Releases
+
+- Make a new branch for the release of the new version.
+- Update the [CHANGELOG](https://github.com/springload/wagtailgmaps/CHANGELOG.md).
+- Update the version number in `wagtailgmaps/__init__.py`, following semver.
+- Make a PR and squash merge it.
+- Back on master with the PR merged, use `make publish` (confirm, and enter your password).
+- Finally, go to GitHub and create a release and a tag for the new version.
+- Done!
