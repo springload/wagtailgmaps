@@ -1,0 +1,53 @@
+language: python
+cache:
+  pip: true
+  bundler: true
+  directories:
+  - .tox
+matrix:
+  # See `Which version combinations to include in Travis test matrix?` in `/docs/README.md`.
+  include:
+   - env: TOXENV=py27-dj18-wt111
+     python: 2.7
+   - env: TOXENV=py27-dj18-wt112
+     python: 2.7
+   - env: TOXENV=py27-dj110-wt111
+     python: 2.7
+   - env: TOXENV=py27-dj110-wt112
+     python: 2.7
+   - env: TOXENV=py27-dj111-wt111
+     python: 2.7
+   - env: TOXENV=py27-dj111-wt112
+     python: 2.7
+   - env: TOXENV=py34-dj111-wt112
+     python: 3.4
+   - env: TOXENV=py35-dj111-wt112
+     python: 3.5
+   - env: TOXENV=py36-dj18-wt111
+     python: 3.6
+   - env: TOXENV=py36-dj18-wt112
+     python: 3.6
+   - env: TOXENV=py36-dj110-wt111
+     python: 3.6
+   - env: TOXENV=py36-dj110-wt112
+     python: 3.6
+   - env: TOXENV=py36-dj111-wt111
+     python: 3.6
+   - env: TOXENV=py36-dj111-wt112
+     python: 3.6
+   - env: TOXENV=py27-dj18-wt19
+     python: 3.6
+install:
+- pip install tox coveralls
+script:
+- make test-ci
+after_success:
+# This is ran on all build, but the coverage is only fully calculated in one.
+# Convert JS LCOV report to Coveralls JSON, merge and send.
+- coveralls-lcov -v -n coverage/lcov.info > js_coverage.json
+- coveralls --merge=js_coverage.json
+notifications:
+  email: false
+  slack:
+    rooms:
+      secure: K4gEBdaBT6W69jk0+kGCP2fCn+IgtgYmADlJBmN0uxeQ9vbU2ubKjOJzZ7pCR06RvNCudyTsKYLDOu1sgpJhrU3l9+ELiuXRaHXspNHmvDJXbU704eHrL6ahAlr7OLDokaeWXz7c78znvvOwPVKxdfKuYTUQdFKbtr6ZnMlVMC+iagBiPdcWbuL2/HVuxoVAz6+KiT+eh5/Rj++GlxBIVNJtf/L9jHYJ9ZwrEsILeGNXR+b+qUgGST41Ft+aeLX6ORwbuSfki2qB1UUxrKSYtzUdP3xWZJ5GRFOM6t0Rb5kVn4MrFReHF5MWlXT85dj1dpq6UINzohhRkfjmhfeggBcbBK6uNVdKyrTkgnFltIbqP8pZN8kR3KUEik7GrmJXPSjh/hg41E3Kj2M4htIepB2QdHukGW+/4A5GaLvDWPOwoLByCn2KB0+pvutMkROWmgOmAD5V8+vC6n2pkpUnqBKNRDQ3lzEpkRsaRSU0Vp2t6v57dRVRJygDxAslH5TXoVj9fq3fQ797Y56mDNrWKZxOeBwMqbLiaYpgWofzHIa+3xfNbjmNZskBIN1+Fh3q0/MOro5pPTMtnJmqciieWpAzZwpG34JAD7WejQXtB+Wbe3jdQcYUyN8BAJBq7P7ejNbT0/PtgSm0xHGJM5KrlCCDHMH7Hhm53MJQUv97vPM=

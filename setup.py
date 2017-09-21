@@ -7,6 +7,29 @@ with open(os.path.join(os.path.dirname(__file__), 'README.md')) as readme:
 # allow setup.py to be run from any path
 os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 
+# Package dependencies
+install_requires = [
+]
+
+# Testing dependencies
+testing_extras = [
+    # Required for running the tests
+    'tox>=2.3.1,<2.4',
+
+    # For coverage and PEP8 linting
+    'coverage>=4.1.0,<4.2',
+    'flake8>=3.2.0,<3.3',
+    'isort==4.2.5',
+
+    # For test site
+    'wagtail==1.12',
+]
+
+# Documentation dependencies
+documentation_extras = [
+
+]
+
 setup(
     name='wagtailgmaps',
     version='0.3.0',
@@ -34,4 +57,9 @@ setup(
         'Topic :: Internet :: WWW/HTTP',
         'Topic :: Internet :: WWW/HTTP :: Dynamic Content',
     ],
+    install_requires=install_requires,
+    extras_require={
+        'testing': testing_extras,
+        'docs': documentation_extras,
+    },
 )

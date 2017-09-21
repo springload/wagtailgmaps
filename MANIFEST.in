@@ -1,4 +1,4 @@
 include LICENSE *.rst *.txt *.md
-recursive-include wagtailgmap *
+recursive-include wagtailgmaps *
 global-exclude __pycache__
 global-exclude *.py[co]
