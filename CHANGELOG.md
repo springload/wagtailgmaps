@@ -15,6 +15,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Fixed
 ...
 
+## [0.3.1] - 2017-11-20
+
+### Fixed
+
+- Installation on Python 2.7.6 would fail
+
 ## [0.3] - 2017-09-21
 
 Thanks to @danreeves, @craigloftus, @urlsangel and @SalahAdDin for their contributions.
@@ -67,7 +73,8 @@ Thanks to @danreeves, @craigloftus, @urlsangel and @SalahAdDin for their contrib
 
 Initial Release
 
-[Unreleased]: https://github.com/springload/wagtailgmaps/compare/v0.3...HEAD
+[Unreleased]: https://github.com/springload/wagtailgmaps/compare/v0.3.1...HEAD
+[0.3.1]: https://github.com/springload/wagtailgmaps/compare/v0.3...v0.3.1
 [0.3]: https://github.com/springload/wagtailgmaps/compare/v0.2.5...v0.3
 [0.2.5]: https://github.com/springload/wagtailgmaps/compare/v0.2.3...v0.2.5
 [0.2.3]: https://github.com/springload/wagtailgmaps/compare/v0.2.2...v0.2.3
