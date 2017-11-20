@@ -2,7 +2,7 @@ from __future__ import absolute_import, unicode_literals
 
 import os
 
-from setuptools import setup, find_packages
+from setuptools import find_packages, setup
 
 from wagtailgmaps import __version__
 
