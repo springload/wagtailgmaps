@@ -2,7 +2,7 @@ from __future__ import absolute_import, unicode_literals
 
 import os
 
-from setuptools import setup
+from setuptools import find_packages, setup
 
 from wagtailgmaps import __version__
 
@@ -39,7 +39,7 @@ documentation_extras = [
 setup(
     name='wagtailgmaps',
     version=__version__,
-    packages=['wagtailgmaps'],
+    packages=find_packages(),
     include_package_data=True,
     license='MIT',
     description='Google Maps widget for address fields in Wagtail',
