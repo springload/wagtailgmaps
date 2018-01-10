@@ -9,7 +9,7 @@ from wagtail.wagtailcore import hooks
 @hooks.register('insert_editor_js')
 def editor_js():
     maps_js = 'https://maps.googleapis.com/maps/api/js?key={}'.format(settings.WAGTAIL_ADDRESS_MAP_KEY)
-    language = getattr(settings, 'WAGTAIL_ADDRESS_MAP_LANGUAGE')
+    language = getattr(settings, 'WAGTAIL_ADDRESS_MAP_LANGUAGE', None)
     if language:
         maps_js += '&language={}'.format(language)
     js_files = (
