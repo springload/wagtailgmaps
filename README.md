@@ -12,12 +12,16 @@
 
 Add `wagtailgmaps` to your `settings.py` `INSTALLED_APPS` section.
 
-Add a couple of necessary constants in your `settings.py` file:
+Add some configuration in your `settings.py` file:
 
 ```python
+# Mandatory
 WAGTAIL_ADDRESS_MAP_CENTER = 'Wellington, New Zealand'
 WAGTAIL_ADDRESS_MAP_ZOOM = 8
 WAGTAIL_ADDRESS_MAP_KEY = 'xxx'
+
+# Optional
+WAGTAIL_ADDRESS_MAP_LANGUAGE = 'ru'
 ```
 
 `WAGTAIL_ADDRESS_MAP_CENTER` must be a properly formatted address. Also, remember valid zoom levels go from 0 to 18. See [Map options](https://developers.google.com/maps/documentation/javascript/tutorial#MapOptions) for details.
