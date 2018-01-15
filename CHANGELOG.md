@@ -15,6 +15,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Fixed
 ...
 
+## [0.4] - 2018-01-15
+
+Thanks to @balinabbb for his contribution
+
+### Added
+
+- Add the possibility to set the (admin) map language with `WAGTAIL_ADDRESS_MAP_LANGUAGE`
+
 ## [0.3.1] - 2017-11-20
 
 ### Fixed
