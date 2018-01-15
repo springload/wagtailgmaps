@@ -81,7 +81,8 @@ Thanks to @danreeves, @craigloftus, @urlsangel and @SalahAdDin for their contrib
 
 Initial Release
 
-[Unreleased]: https://github.com/springload/wagtailgmaps/compare/v0.3.1...HEAD
+[Unreleased]: https://github.com/springload/wagtailgmaps/compare/v0.4...HEAD
+[0.4]: https://github.com/springload/wagtailgmaps/compare/v0.3.1...v0.4
 [0.3.1]: https://github.com/springload/wagtailgmaps/compare/v0.3...v0.3.1
 [0.3]: https://github.com/springload/wagtailgmaps/compare/v0.2.5...v0.3
 [0.2.5]: https://github.com/springload/wagtailgmaps/compare/v0.2.3...v0.2.5
