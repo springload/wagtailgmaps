@@ -8,46 +8,51 @@
 
 ## Quickstart
 
-``` $ pip install wagtailgmaps```
+1. Install with `pip install wagtailgmaps`
+1. Add `wagtailgmaps` to your `settings.py` `INSTALLED_APPS` section.
+1. Add some configuration in your `settings.py` file:
 
-Add `wagtailgmaps` to your `settings.py` `INSTALLED_APPS` section.
+    ```python
+    # Mandatory
+    WAGTAIL_ADDRESS_MAP_CENTER = 'Wellington, New Zealand'  # It must be a properly formatted address
+    WAGTAIL_ADDRESS_MAP_ZOOM = 8  # Between 0 and 18. See https://developers.google.com/maps/documentation/javascript/tutorial#MapOptions for more information
+    WAGTAIL_ADDRESS_MAP_KEY = 'xxx'
 
-Add some configuration in your `settings.py` file:
+    # Optional
+    WAGTAIL_ADDRESS_MAP_LANGUAGE = 'ru'
+    ```
 
-```python
-# Mandatory
-WAGTAIL_ADDRESS_MAP_CENTER = 'Wellington, New Zealand'
-WAGTAIL_ADDRESS_MAP_ZOOM = 8
-WAGTAIL_ADDRESS_MAP_KEY = 'xxx'
+    > As of June 22th 2016, Google maps requires an API key. See how to [Get a key](https://developers.google.com/maps/documentation/javascript/get-api-key). While you're there, you'll also need to enable the [Geocoding Service](https://developers.google.com/maps/documentation/javascript/geocoding).
 
-# Optional
-WAGTAIL_ADDRESS_MAP_LANGUAGE = 'ru'
-```
+4. Use it:
 
-`WAGTAIL_ADDRESS_MAP_CENTER` must be a properly formatted address. Also, remember valid zoom levels go from 0 to 18. See [Map options](https://developers.google.com/maps/documentation/javascript/tutorial#MapOptions) for details.
+    ```python
+    # myapp/models.py
+    from django.db import models
+    from wagtail.wagtailcore.models import Page
+    from wagtailgmaps.edit_handlers import MapFieldPanel
 
-> As of June 22 2016, Google maps requires an API key. See how to [Get a key](https://developers.google.com/maps/documentation/javascript/get-api-key). While you're there, you'll also need to enable the [Geocoding Service](https://developers.google.com/maps/documentation/javascript/geocoding).
+    class MapPage(Page):
+        # Wagtailgmaps expects a `CharField` (or any other field that renders as a text input)
+        formatted_address = models.CharField(max_length=255)
+        latlng_address = models.CharField(max_length=255)
 
-wagtailgmaps expects a CharField (or any other field that renders as a text input) and comes with a MapFieldPanel. In your `models.py`, your custom Page model would have something similar to:
+        # Use the `MapFieldPanel` just like you would use a `FieldPanel`
+        content_panels = Page.content_panels + [
+            MapFieldPanel('formatted_address'),
+            MapFieldPanel('latlng_address', latlng=True),
+        ]
+    ```
 
-```python
-address = models.CharField(max_length=255)
-# ...
+    ```html
+    # myapp/templates/myapp/map_page.html
+    <a href="http://maps.google.com/?q={{ self.formatted_address }}">Open map (Formatted Address)</a>
+    <a href="http://maps.google.com/?q={{ self.latlng_address }}">Open map (Lat/Long Address)</a>
+    ```
 
-content_panels = [
-    MapFieldPanel('address')
-]
-```
+## Additional information
 
-Notice that the string you pass to the `MapFieldPanel` is the name of the field, just like when using `FieldPanels`.
-
-If instead of outputting a formatted address, you want to output a LatLng, you should add `latlng=True` to the panel:
-
-```python
-MapFieldPanel('address', latlng=True)
-```
-
-All the options available are:
+### `MapFieldPanel` options
 
  - `heading` - A custom heading in the admin, defaults to "Location"
  - `classname` - Add extra css classes to the field
@@ -55,7 +60,7 @@ All the options available are:
  - `centre` - A custom override for this field
  - `zoom` - A custom override for this field
 
-When editing the model from the admin interface the affected field shows up with a map, like the screenshot above.
+### How the address option works under the hook
 
 If using the address option, the field gets updated according to the [Google Geocoding Service](https://developers.google.com/maps/documentation/geocoding/) each time:
 
@@ -63,19 +68,9 @@ If using the address option, the field gets updated according to the [Google Geo
 * Click happens somewhere in the map (`click` JS event).
 * Return key is pressed after editing the field (`enterKey` JS event for return key only).
 
-Feel free to edit the provided JS to add/edit the events you might need.
+### Troubleshooting
 
-Once your address field is properly formatted and stored in the database you can use it in your front end Django templates. Example:
-
-```html
-<a href="http://maps.google.com/?q={{ address }}">Open map</a>
-```
-
-Or if you opted for the LatLng pair option:
-
-```html
-<a href="http://maps.google.com/?q={{ latlng }}">Open map</a>
-```
+When editing the model from the admin interface the affected field shows up with a map, like the screenshot above. If it doesn't, check your browser console to make sure that there is no error related to your API key.
 
 ## Development
 
