@@ -7,14 +7,6 @@ cache:
 matrix:
   # See `Which version combinations to include in Travis test matrix?` in `/docs/README.md`.
   include:
-   - env: TOXENV=py27-dj18-wt112
-     python: 2.7
-   - env: TOXENV=py27-dj18-wt113
-     python: 2.7
-   - env: TOXENV=py27-dj110-wt112
-     python: 2.7
-   - env: TOXENV=py27-dj110-wt113
-     python: 2.7
    - env: TOXENV=py27-dj111-wt112
      python: 2.7
    - env: TOXENV=py27-dj111-wt113
@@ -23,20 +15,14 @@ matrix:
      python: 3.4
    - env: TOXENV=py35-dj111-wt113
      python: 3.5
-   - env: TOXENV=py36-dj18-wt112
-     python: 3.6
-   - env: TOXENV=py36-dj18-wt113
-     python: 3.6
-   - env: TOXENV=py36-dj110-wt112
-     python: 3.6
-   - env: TOXENV=py36-dj110-wt113
-     python: 3.6
    - env: TOXENV=py36-dj111-wt112
      python: 3.6
    - env: TOXENV=py36-dj111-wt113
      python: 3.6
-   - env: TOXENV=py27-dj18-wt19-drf36
-     python: 2.7
+   - env: TOXENV=py36-dj111-wt2b
+     python: 3.6
+   - env: TOXENV=py36-dj2-wt2b
+     python: 3.6
 install:
 - pip install tox coveralls
 script:
