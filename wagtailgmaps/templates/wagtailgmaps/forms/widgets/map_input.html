@@ -1,0 +1,9 @@
+<input type="{{ widget.type }}" name="{{ widget.name }}"{% if widget.value != None %} value="{{ widget.value }}"{% endif %}{% include "django/forms/widgets/attrs.html" %}>
+<br/>
+<div id="map-canvas-{{ map_id }}"
+     style="width: 100%; height: 300px;"
+     class="map-googlemap">
+    <noscript>
+        <img src="https://maps.google.com/maps/api/staticmap?center={{ address }}&zoom={{ zoom }}&size=600x300&markers={{ address }}">
+    </noscript>
+</div>
