@@ -1,4 +1,4 @@
-<input type="{{ widget.type }}" name="{{ widget.name }}"{% if widget.value != None %} value="{{ widget.value }}"{% endif %}{% include "django/forms/widgets/attrs.html" %}>
+{% include "django/forms/widgets/text.html" %}
 <br/>
 <div id="map-canvas-{{ map_id }}"
      style="width: 100%; height: 300px;"
