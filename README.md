@@ -22,7 +22,7 @@
     WAGTAIL_ADDRESS_MAP_LANGUAGE = 'ru'  # See https://developers.google.com/maps/faq#languagesupport for supported languages.
     ```
 
-    > As of June 22th 2016, Google maps requires an API key. See how to [Get a key](https://developers.google.com/maps/documentation/javascript/get-api-key). While you're there, you'll also need to enable the [Geocoding Service](https://developers.google.com/maps/documentation/javascript/geocoding).
+    > As of June 22th 2016, Google maps requires an API key. See how to [Get a key](https://developers.google.com/maps/documentation/javascript/get-api-key). While you're there, you'll also need to enable the [Geocoding Service](https://developers.google.com/maps/documentation/javascript/geocoding), the [Maps JS API](https://developers.google.com/maps/documentation/javascript/) and the [Static Map API](https://developers.google.com/maps/documentation/static-maps/)
 
 4. Use it:
 
