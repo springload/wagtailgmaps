@@ -9,3 +9,7 @@ li.wagtailgmap {
 li.wagtailgmap img {
     max-width: none;
 }
+
+.map-googlemap {
+    margin-top: 20px;
+}

@@ -3,7 +3,11 @@ from __future__ import absolute_import, unicode_literals
 from django.conf import settings
 from django.contrib.staticfiles.templatetags.staticfiles import static
 from django.utils.html import format_html_join
-from wagtail.wagtailcore import hooks
+
+try:
+    from wagtail.core import hooks
+except ImportError:
+    from wagtail.wagtailcore import hooks
 
 
 @hooks.register('insert_editor_js')

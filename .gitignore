@@ -12,3 +12,4 @@ tests/testapp/var/media/
 .coverage
 coverage
 coverage_html_report/
+local.py
