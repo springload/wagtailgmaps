@@ -15,11 +15,11 @@
     ```python
     # Mandatory
     WAGTAIL_ADDRESS_MAP_CENTER = 'Wellington, New Zealand'  # It must be a properly formatted address
-    WAGTAIL_ADDRESS_MAP_ZOOM = 8  # Between 0 and 18. See https://developers.google.com/maps/documentation/javascript/tutorial#MapOptions for more information
     WAGTAIL_ADDRESS_MAP_KEY = 'xxx'
 
     # Optional
-    WAGTAIL_ADDRESS_MAP_LANGUAGE = 'ru'
+    WAGTAIL_ADDRESS_MAP_ZOOM = 8  # See https://developers.google.com/maps/documentation/javascript/tutorial#MapOptions for more information.
+    WAGTAIL_ADDRESS_MAP_LANGUAGE = 'ru'  # See https://developers.google.com/maps/faq#languagesupport for supported languages.
     ```
 
     > As of June 22th 2016, Google maps requires an API key. See how to [Get a key](https://developers.google.com/maps/documentation/javascript/get-api-key). While you're there, you'll also need to enable the [Geocoding Service](https://developers.google.com/maps/documentation/javascript/geocoding).
