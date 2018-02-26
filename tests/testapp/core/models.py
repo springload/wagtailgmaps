@@ -1,15 +1,11 @@
 from __future__ import absolute_import, unicode_literals
 
 from django.db import models
+from wagtail.admin.edit_handlers import MultiFieldPanel
+from wagtail.core.models import Page
 
 from wagtailgmaps.edit_handlers import MapFieldPanel
 
-try:
-    from wagtail.admin.edit_handlers import MultiFieldPanel
-    from wagtail.core.models import Page
-except ImportError:
-    from wagtail.wagtailadmin.edit_handlers import MultiFieldPanel
-    from wagtail.wagtailcore.models import Page
 
 
 class MapPage(Page):
