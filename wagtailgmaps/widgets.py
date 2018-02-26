@@ -1,7 +1,7 @@
 import json
 
 from django.conf import settings
-from django.forms import TextInput
+from django.forms import Media, TextInput
 from wagtail.utils.widgets import WidgetWithScript
 
 
@@ -58,3 +58,15 @@ class MapInput(WidgetWithScript, TextInput):
             'window.initialize_map({opts});'
             '}});'
         ).format(opts=json.dumps(options))
+
+    @property
+    def media(self):
+        maps_api_js = 'https://maps.googleapis.com/maps/api/js?key={}'.format(settings.WAGTAIL_ADDRESS_MAP_KEY)
+        language = getattr(settings, 'WAGTAIL_ADDRESS_MAP_LANGUAGE', None)
+        if language:
+            maps_api_js += '&language={}'.format(language)
+
+        return Media(
+            css={'screen': ('wagtailgmaps/css/admin.css',)},
+            js=(maps_api_js, 'wagtailgmaps/js/map-field-panel.js')
+        )
