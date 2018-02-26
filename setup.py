@@ -28,7 +28,8 @@ testing_extras = [
     'isort==4.2.5',
 
     # For test site
-    'wagtail==1.12',
+    'django==2.0',
+    'wagtail==2.0b1',
 ]
 
 # Documentation dependencies

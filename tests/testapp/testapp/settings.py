@@ -3,8 +3,6 @@ from __future__ import absolute_import, unicode_literals
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 
-import wagtail
-
 PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE_DIR = os.path.dirname(PROJECT_DIR)
 
@@ -15,36 +13,17 @@ BASE_DIR = os.path.dirname(PROJECT_DIR)
 
 # Application definition
 
-if wagtail.VERSION >= (2, 0):
-    wagtail_apps = [
-        'wagtail.sites',
-        'wagtail.users',
-        'wagtail.admin',
-        'wagtail.core',
-        'wagtail.documents',
-        'wagtail.images',
-    ]
-    wagtail_middlewares = [
-        'wagtail.core.middleware.SiteMiddleware',
-    ]
-else:
-    wagtail_apps = [
-        'wagtail.wagtailsites',
-        'wagtail.wagtailusers',
-        'wagtail.wagtaildocs',
-        'wagtail.wagtailimages',
-        'wagtail.wagtailadmin',
-        'wagtail.wagtailcore',
-    ]
-    wagtail_middlewares = [
-        'wagtail.wagtailcore.middleware.SiteMiddleware',
-    ]
-
-
-INSTALLED_APPS = wagtail_apps + [
+INSTALLED_APPS = [
     'core',
 
     'wagtailgmaps',
+
+    'wagtail.sites',
+    'wagtail.users',
+    'wagtail.admin',
+    'wagtail.core',
+    'wagtail.documents',
+    'wagtail.images',
 
     'modelcluster',
     'taggit',
@@ -62,11 +41,11 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
-] + wagtail_middlewares
+    'wagtail.core.middleware.SiteMiddleware',
+]
 
 ROOT_URLCONF = 'testapp.urls'
 

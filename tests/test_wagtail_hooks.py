@@ -2,12 +2,9 @@ from __future__ import absolute_import, unicode_literals
 
 import unittest
 
-from wagtailgmaps.wagtail_hooks import editor_css, editor_js
+from wagtail.core.hooks import get_hooks
 
-try:
-    from wagtail.core.hooks import get_hooks
-except ImportError:
-    from wagtail.wagtailcore.hooks import get_hooks
+from wagtailgmaps.wagtail_hooks import editor_css, editor_js
 
 
 class TestWagtailHooks(unittest.TestCase):
