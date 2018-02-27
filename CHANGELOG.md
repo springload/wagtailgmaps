@@ -6,14 +6,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
-### Added
-...
+### Removed
+- Compatibility with Wagtail 1.13 and before (use wagtailgmap==0.4 instead)
 
 ### Changed
-...
+- Simplified the implementation of the MapFieldPanel
 
 ### Fixed
-...
+- Compatibility with Wagtail 2.0
+- Admin map missing API key for display with noscript
 
 ## [0.4] - 2018-01-15
 
@@ -61,7 +62,7 @@ Thanks to @danreeves, @craigloftus, @urlsangel and @SalahAdDin for their contrib
 
 ### Fixed
 
-- Compatible with Wagtail 1.0
+- Compatibility with Wagtail 1.0
 
 ## [0.2.2] - 2015-07-07
 
