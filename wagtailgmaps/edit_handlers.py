@@ -3,7 +3,6 @@ import json
 from django.conf import settings
 from wagtail.admin.edit_handlers import FieldPanel
 
-from .utils import random_string
 from .widgets import MapInput
 
 
@@ -12,7 +11,6 @@ class MapFieldPanel(FieldPanel):
         self.default_centre = kwargs.pop('centre', getattr(settings, 'WAGTAIL_ADDRESS_MAP_CENTER', None))
         self.zoom = kwargs.pop('zoom', getattr(settings, 'WAGTAIL_ADDRESS_MAP_ZOOM', 8))
         self.latlng = kwargs.pop('latlng', False)
-        self.map_id = None  # Will be populated by `on_model_bound`
 
         super().__init__(field_name, *args, **kwargs)
 
@@ -22,13 +20,8 @@ class MapFieldPanel(FieldPanel):
         instance.default_centre = self.default_centre
         instance.zoom = self.zoom
         instance.latlng = self.latlng
-        instance.map_id = self.map_id
 
         return instance
-
-    def on_model_bound(self):
-        super().on_model_bound()
-        self.map_id = random_string()
 
     def classes(self):
         classes = super().classes()
@@ -40,6 +33,5 @@ class MapFieldPanel(FieldPanel):
             default_centre=self.default_centre,
             zoom=self.zoom,
             latlng=self.latlng,
-            map_id=self.map_id,
         )
         return {self.field_name: map_input}
