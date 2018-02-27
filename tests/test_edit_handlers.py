@@ -40,7 +40,6 @@ class EditHandlersTestCase(SimpleTestCase):
         self.assertEqual(panel.default_centre, clone.default_centre)
         self.assertEqual(panel.zoom, clone.zoom)
         self.assertEqual(panel.latlng, clone.latlng)
-        self.assertEqual(panel.map_id, clone.map_id)
 
     @unittest.skip('TODO: Bind the panel to the model for the test to succeed.')
     def test_classes(self):

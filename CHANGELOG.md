@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 - Simplified the implementation of the MapFieldPanel
+- Derive the map ID from the field ID (instead of using a randomly generated ID)
 
 ### Fixed
 - Compatibility with Wagtail 2.0

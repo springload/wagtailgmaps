@@ -91,7 +91,7 @@ $(document).ready(function() {
         // Get latlong form address to initialize map
         geocoder.geocode( { "address": params.address}, function(results, status) {
           if (status == google.maps.GeocoderStatus.OK) {
-            set_address({}, results[0].geometry.location, "map-canvas-" + params.map_id, params.map_id, params.zoom, {}, {});
+            set_address({}, results[0].geometry.location, params.map_id, params.map_id, params.zoom, {}, {});
           } else {
             alert("Geocode was not successful for the following reason: " + status);
           }

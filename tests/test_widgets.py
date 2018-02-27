@@ -10,7 +10,6 @@ class MapInputTestCasse(SimpleTestCase):
             'default_centre': 'Springload, Te Aro, Wellington, New Zealand',
             'zoom': 8,
             'latlng': False,
-            'map_id': 'abcdef',
         }
 
         if kwargs:
@@ -29,7 +28,6 @@ class MapInputTestCasse(SimpleTestCase):
         self.assertEqual(widget.default_centre, data['default_centre'])
         self.assertEqual(widget.zoom, data['zoom'])
         self.assertEqual(widget.latlng, data['latlng'])
-        self.assertEqual(widget.map_id, data['map_id'])
 
     @override_settings()
     def test_init_raises_for_missing_api_key(self):
@@ -63,18 +61,38 @@ class MapInputTestCasse(SimpleTestCase):
         map_centre = widget.get_map_centre(given_address)
         self.assertEqual(map_centre, given_address)
 
+    def test_get_map_id(self):
+        data = self._get_init_data()
+        widget = MapInput(**data)
+
+        field_id = 'the-field'
+        expected_map_id = '{}-map-canvas'.format(field_id)
+        map_id = widget.get_map_id(field_id)
+        self.assertEqual(map_id, expected_map_id)
+
+    def test_get_map_id_raises_with_no_field_id(self):
+        data = self._get_init_data()
+        widget = MapInput(**data)
+
+        with self.assertRaises(AssertionError):
+            widget.get_map_id(None)
+
+        with self.assertRaises(AssertionError):
+            widget.get_map_id('')
+
     def test_get_context(self):
         data = self._get_init_data()
         widget = MapInput(**data)
+        field_id = 'the-id'
 
         expected_context = {
             'address': data['default_centre'],
             'zoom': data['zoom'],
-            'map_id': data['map_id'],
+            'map_id': widget.get_map_id(field_id),
             'latlng': data['latlng'],
             'gmaps_api_key': settings.WAGTAIL_ADDRESS_MAP_KEY,
         }
-        context = widget.get_context('the-name', None, {})
+        context = widget.get_context('the-name', None, {'id': field_id})
 
         self.assertTrue(expected_context.items() <= context.items())
 
