@@ -6,13 +6,13 @@ $(document).ready(function() {
     var geocoder = new google.maps.Geocoder();
 
     // Get formatted address from LatLong position
-    function geocodePosition(pos, input) {
+    function geocodePosition(pos, input, latlngMode) {
       geocoder.geocode({
         latLng: pos
       }, function(responses) {
         if (responses && responses.length > 0) {
             $input = $(input);
-            if ($input.attr('data-latlng') !== undefined) {
+            if (latlngMode) {
               $input.val(
                 String(responses[0].geometry.location.lat()) + ', ' + String(responses[0].geometry.location.lng())
               );
@@ -26,12 +26,12 @@ $(document).ready(function() {
     }
 
     // Get LatLong position and formatted address from inaccurate address string
-    function geocodeAddress(address, input, marker, map) {
+    function geocodeAddress(address, input, latlngMode, marker, map) {
       geocoder.geocode({'address': address}, function(results, status) {
         if (status == google.maps.GeocoderStatus.OK) {
           marker.setPosition(results[0].geometry.location);
           $input = $(input);
-          if ($input.attr('data-latlng') !== undefined) {
+          if (latlngMode) {
             $input.val(
               String(results[0].geometry.location.lat()) + ', ' + String(results[0].geometry.location.lng())
             );
@@ -45,7 +45,7 @@ $(document).ready(function() {
       });
     }
 
-    function set_address(mapElem, latlng, mapId, map_key, zoom, map, marker){
+    function set_address(mapElem, latlng, mapId, map_key, zoom, latlngMode, map, marker){
           mapElem[map_key] = document.getElementById(mapId);
           // Usually the address input is the first input sibling of the map container..
           mapElem.input = $("#" + mapId).parent().find("input:first");
@@ -64,16 +64,16 @@ $(document).ready(function() {
           });
           // Set events listeners to update marker/input values/positions
           google.maps.event.addListener(marker[map_key], 'dragend', function(event) {
-            geocodePosition(marker[map_key].getPosition(), mapElem.input);
+            geocodePosition(marker[map_key].getPosition(), mapElem.input, latlngMode);
           });
           google.maps.event.addListener(map[map_key], 'click', function(event) {
             marker[map_key].setPosition(event.latLng);
-            geocodePosition(marker[map_key].getPosition(), mapElem.input);
+            geocodePosition(marker[map_key].getPosition(), mapElem.input, latlngMode);
           });
 
           // Event listeners to update map when press enter or tab
           $(mapElem.input).bind("enterKey",function(event) {
-            geocodeAddress($(this).val(), this, marker[map_key], map[map_key]);
+            geocodeAddress($(this).val(), this, latlngMode, marker[map_key], map[map_key]);
           });
 
           $(mapElem.input).keypress(function(event) {
@@ -91,7 +91,7 @@ $(document).ready(function() {
         // Get latlong form address to initialize map
         geocoder.geocode( { "address": params.address}, function(results, status) {
           if (status == google.maps.GeocoderStatus.OK) {
-            set_address({}, results[0].geometry.location, params.map_id, params.map_id, params.zoom, {}, {});
+            set_address({}, results[0].geometry.location, params.map_id, params.map_id, params.zoom, params.latlng, {}, {});
           } else {
             alert("Geocode was not successful for the following reason: " + status);
           }

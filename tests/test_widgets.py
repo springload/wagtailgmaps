@@ -89,30 +89,11 @@ class MapInputTestCasse(SimpleTestCase):
             'address': data['default_centre'],
             'zoom': data['zoom'],
             'map_id': widget.get_map_id(field_id),
-            'latlng': data['latlng'],
             'gmaps_api_key': settings.WAGTAIL_ADDRESS_MAP_KEY,
         }
         context = widget.get_context('the-name', None, {'id': field_id})
 
         self.assertTrue(expected_context.items() <= context.items())
-
-    def test_build_attrs_conserve_defaults(self):
-        data = self._get_init_data()
-        widget = MapInput(**data)
-
-        base_attrs = {'id': 'abcdef'}
-        attrs = widget.build_attrs(base_attrs)
-
-        self.assertTrue(base_attrs.items() <= attrs.items())
-
-    def test_build_attrs_sets_latlng(self):
-        for latlng in (True, False):
-            with self.subTest(latlng=latlng):
-                data = self._get_init_data(latlng=latlng)
-                widget = MapInput(**data)
-                attrs = widget.build_attrs({})
-                self.assertIn('data-latlng', attrs)
-                self.assertEqual(attrs['data-latlng'], latlng)
 
     def test_render_js_init_method_name(self):
         data = self._get_init_data()
