@@ -34,27 +34,17 @@ class MapInput(WidgetWithScript, TextInput):
             'address': self.get_map_centre(value),
             'zoom': self.zoom,
             'map_id': self.get_map_id(attrs['id']),
-            'latlng': self.latlng,
             'gmaps_api_key': self.apikey,
         })
 
         return context
-
-    def build_attrs(self, base_attrs, extra_attrs=None):
-        if extra_attrs is None:
-            extra_attrs = {}
-
-        extra_attrs.update({
-            'data-latlng': self.latlng,
-        })
-
-        return super().build_attrs(base_attrs, extra_attrs)
 
     def render_js_init(self, id_, name, value):
         options = {
             'map_id': self.get_map_id(id_),
             'address': self.get_map_centre(value),
             'zoom': self.zoom,
+            'latlng': self.latlng,
         }
         return (
             'document.addEventListener("wagtailmaps_ready", function(e){{'
