@@ -7,13 +7,13 @@ cache:
 matrix:
   # See `Which version combinations to include in Travis test matrix?` in `/docs/README.md`.
   include:
-   - env: TOXENV=py34-dj2-wt2b
+   - env: TOXENV=py34-dj2-wt2
      python: 3.4
-   - env: TOXENV=py35-dj2-wt2b
+   - env: TOXENV=py35-dj2-wt2
      python: 3.5
-   - env: TOXENV=py36-dj111-wt2b
+   - env: TOXENV=py36-dj111-wt2
      python: 3.6
-   - env: TOXENV=py36-dj2-wt2b
+   - env: TOXENV=py36-dj2-wt2
      python: 3.6
 install:
 - pip install tox coveralls
