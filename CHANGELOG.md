@@ -6,6 +6,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [1.0] - 2018-03-09
+
 ### Removed
 - Compatibility with Wagtail 1.13 and before (use wagtailgmap==0.4 instead)
 
@@ -84,7 +86,8 @@ Thanks to @danreeves, @craigloftus, @urlsangel and @SalahAdDin for their contrib
 
 Initial Release
 
-[Unreleased]: https://github.com/springload/wagtailgmaps/compare/v0.4...HEAD
+[Unreleased]: https://github.com/springload/wagtailgmaps/compare/v1.0...HEAD
+[1.0]: https://github.com/springload/wagtailgmaps/compare/v0.4...v1.0
 [0.4]: https://github.com/springload/wagtailgmaps/compare/v0.3.1...v0.4
 [0.3.1]: https://github.com/springload/wagtailgmaps/compare/v0.3...v0.3.1
 [0.3]: https://github.com/springload/wagtailgmaps/compare/v0.2.5...v0.3
