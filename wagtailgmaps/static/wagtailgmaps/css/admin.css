@@ -4,6 +4,7 @@ li.wagtailgmap {
     -webkit-perspective: 1000;
     -moz-perspective: 1000;
     perspective: 1000;
+    clear: both;
 }
 
 li.wagtailgmap img {
