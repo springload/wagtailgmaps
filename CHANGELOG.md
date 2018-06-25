@@ -6,23 +6,34 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [1.0.1] - 2018-06-25
+
+Thanks to @scisteffan for their contribution.
+
+## Fixed
+
+- Map would not display correctly in the admin (#36, #37)
+
 ## [1.0] - 2018-03-09
 
 ### Removed
+
 - Compatibility with Wagtail 1.13 and before (use wagtailgmap==0.4 instead)
 
 ### Changed
+
 - Simplified the implementation of the MapFieldPanel
 - Derive the map ID from the field ID (instead of using a randomly generated ID)
 - Simplifies the flow of options between the widget, the template and the JS.
 
 ### Fixed
+
 - Compatibility with Wagtail 2.0
 - Admin map missing API key for display with noscript
 
 ## [0.4] - 2018-01-15
 
-Thanks to @balinabbb for his contribution
+Thanks to @balinabbb for their contribution.
 
 ### Added
 
@@ -86,7 +97,8 @@ Thanks to @danreeves, @craigloftus, @urlsangel and @SalahAdDin for their contrib
 
 Initial Release
 
-[Unreleased]: https://github.com/springload/wagtailgmaps/compare/v1.0...HEAD
+[Unreleased]: https://github.com/springload/wagtailgmaps/compare/v1.0.1...HEAD
+[1.0.1]: https://github.com/springload/wagtailgmaps/compare/v1.0...v1.0.1
 [1.0]: https://github.com/springload/wagtailgmaps/compare/v0.4...v1.0
 [0.4]: https://github.com/springload/wagtailgmaps/compare/v0.3.1...v0.4
 [0.3.1]: https://github.com/springload/wagtailgmaps/compare/v0.3...v0.3.1
