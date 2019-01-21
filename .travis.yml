@@ -9,6 +9,7 @@ matrix:
   include:
    - env: TOXENV=py34-dj2-wt2
      python: 3.4
+     dist: trusty
    - env: TOXENV=py35-dj2-wt2
      python: 3.5
    - env: TOXENV=py36-dj111-wt2
