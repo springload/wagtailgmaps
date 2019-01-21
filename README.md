@@ -12,9 +12,10 @@
 
 1. Follow the instructions to [get a key](https://developers.google.com/maps/documentation/javascript/get-api-key)
 2. Enable the following services under `API Restrictions`:
-    1. [Geocoding Service](https://developers.google.com/maps/documentation/javascript/geocoding)
-    2. [Maps JS API](https://developers.google.com/maps/documentation/javascript/)
-    3. [Static Map API](https://developers.google.com/maps/documentation/static-maps/)
+    * [Geocoding API](https://developers.google.com/maps/documentation/javascript/geocoding)
+    * [Maps Static API](https://developers.google.com/maps/documentation/static-maps/)
+    * [Maps JavaScript API](https://developers.google.com/maps/documentation/javascript/)
+    * [Maps Embed API](https://developers.google.com/maps/documentation/javascript/)
 
 ![Google_API_Screenshot](./google-maps-api.png)
 
