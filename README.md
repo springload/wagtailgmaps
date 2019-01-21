@@ -10,11 +10,13 @@
 
 ### Setting Up Your Google API Key
 
-1. Follow the instructions to [Get a key](https://developers.google.com/maps/documentation/javascript/get-api-key)
+1. Follow the instructions to [get a key](https://developers.google.com/maps/documentation/javascript/get-api-key)
 2. Enable the following services under `API Restrictions`:
     1. [Geocoding Service](https://developers.google.com/maps/documentation/javascript/geocoding)
     2. [Maps JS API](https://developers.google.com/maps/documentation/javascript/)
     3. [Static Map API](https://developers.google.com/maps/documentation/static-maps/)
+
+![Google_API_Screenshot](./google-maps-api.png)
 
 ### Installing and Configuration the Python Package
 
