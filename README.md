@@ -8,9 +8,22 @@
 
 ## Quickstart
 
+### Setting Up Your Google API Key
+
+1. Follow the instructions to [get a key](https://developers.google.com/maps/documentation/javascript/get-api-key)
+2. Enable the following services under `API Restrictions`:
+    * [Geocoding API](https://developers.google.com/maps/documentation/javascript/geocoding)
+    * [Maps Static API](https://developers.google.com/maps/documentation/static-maps/)
+    * [Maps JavaScript API](https://developers.google.com/maps/documentation/javascript/)
+    * [Maps Embed API](https://developers.google.com/maps/documentation/javascript/)
+
+![Google_API_Screenshot](./google-maps-api.png)
+
+### Installing and Configuration the Python Package
+
 1. Install with `pip install wagtailgmaps`
-1. Add `wagtailgmaps` to your `settings.py` `INSTALLED_APPS` section.
-1. Add some configuration in your `settings.py` file:
+2. Add `wagtailgmaps` to your `settings.py` `INSTALLED_APPS` section.
+3. Add some configuration in your `settings.py` file:
 
     ```python
     # Mandatory
@@ -21,8 +34,6 @@
     WAGTAIL_ADDRESS_MAP_ZOOM = 8  # See https://developers.google.com/maps/documentation/javascript/tutorial#MapOptions for more information.
     WAGTAIL_ADDRESS_MAP_LANGUAGE = 'ru'  # See https://developers.google.com/maps/faq#languagesupport for supported languages.
     ```
-
-    > As of June 22th 2016, Google maps requires an API key. See how to [Get a key](https://developers.google.com/maps/documentation/javascript/get-api-key). While you're there, you'll also need to enable the [Geocoding Service](https://developers.google.com/maps/documentation/javascript/geocoding), the [Maps JS API](https://developers.google.com/maps/documentation/javascript/) and the [Static Map API](https://developers.google.com/maps/documentation/static-maps/)
 
 4. Use it:
 
