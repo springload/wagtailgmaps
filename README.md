@@ -71,7 +71,7 @@
  - `centre` - A custom override for this field
  - `zoom` - A custom override for this field
 
-### How the address option works under the hook
+### How the address option works under the hood
 
 If using the address option, the field gets updated according to the [Google Geocoding Service](https://developers.google.com/maps/documentation/geocoding/) each time:
 
