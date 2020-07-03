@@ -51,7 +51,8 @@ $(document).ready(function() {
         var mapOptions = {
             zoom: zoom,
             center: latlng,
-            mapTypeId: google.maps.MapTypeId.ROADMAP
+            mapTypeId: google.maps.MapTypeId.ROADMAP,
+            clickableIcons: false
         };
 
         map[map_key] = new google.maps.Map(mapElem[map_key], mapOptions);
