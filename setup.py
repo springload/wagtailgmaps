@@ -16,7 +16,7 @@ install_requires = []
 # Testing dependencies
 testing_extras = [
     # Required for running the tests
-    "tox>=2.3.1,<2.4",
+    "tox~=4.26.0",
     # For coverage and PEP8 linting
     "coverage>=4.1.0,<4.2",
     "flake8>=3.2.0,<3.3",
