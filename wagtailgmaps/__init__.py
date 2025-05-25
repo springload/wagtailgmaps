@@ -1,5 +1,5 @@
 __title__ = "wagtailgmaps"
-__version__ = "1.0.1"
+__version__ = "2.0.0pre"
 __author__ = "Springload"
 __license__ = "MIT"
-__copyright__ = "Copyright 2017 Springload"
+__copyright__ = "Copyright 2025 Springload"

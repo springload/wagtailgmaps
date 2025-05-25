@@ -1,22 +1,17 @@
 from django.conf import settings
 from wagtail.admin import urls as wagtailadmin_urls
-from wagtail.core import urls as wagtail_urls
+from wagtail import urls as wagtail_urls
 from wagtail.documents import urls as wagtaildocs_urls
 from wagtail.images import urls as wagtailimages_urls
 
-try:
-    from django.urls import include, url  # Use `path` once Django<2.0 support is dropped
-except ImportError:
-    from django.conf.urls import include, url
+from django.urls import include, path
 
 
 urlpatterns = [
-    url(r'^admin/', include(wagtailadmin_urls)),
-
-    url(r'^documents/', include(wagtaildocs_urls)),
-    url(r'^images/', include(wagtailimages_urls)),
-
-    url(r'', include(wagtail_urls)),
+    path("admin/", include(wagtailadmin_urls)),
+    path("documents/", include(wagtaildocs_urls)),
+    path("images/", include(wagtailimages_urls)),
+    path("", include(wagtail_urls)),
 ]
 
 

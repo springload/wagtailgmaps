@@ -3,28 +3,33 @@ cache:
   pip: true
   bundler: true
   directories:
-  - .tox
+    - .tox
 matrix:
   # See `Which version combinations to include in Travis test matrix?` in `/docs/README.md`.
   include:
-   - env: TOXENV=py34-dj2-wt2
-     python: 3.4
-     dist: trusty
-   - env: TOXENV=py35-dj2-wt2
-     python: 3.5
-   - env: TOXENV=py36-dj111-wt2
-     python: 3.6
-   - env: TOXENV=py36-dj2-wt2
-     python: 3.6
+    - env: TOXENV=py39-dj52-wt7
+      python: 3.9
+    - env: TOXENV=py310-dj52-wt7
+      python: 3.10
+    - env: TOXENV=py311-dj52-wt7
+      python: 3.11
+    - env: TOXENV=py312-dj52-wt7
+      python: 3.12
+    - env: TOXENV=py313-dj42-wt7
+      python: 3.13
+    - env: TOXENV=py313-dj51-wt7
+      python: 3.13
+    - env: TOXENV=py313-dj52-wt7
+      python: 3.13
 install:
-- pip install tox coveralls
+  - pip install tox coveralls
 script:
-- make test-ci
+  - make test-ci
 after_success:
-# This is ran on all build, but the coverage is only fully calculated in one.
-# Convert JS LCOV report to Coveralls JSON, merge and send.
-- coveralls-lcov -v -n coverage/lcov.info > js_coverage.json
-- coveralls --merge=js_coverage.json
+  # This is ran on all build, but the coverage is only fully calculated in one.
+  # Convert JS LCOV report to Coveralls JSON, merge and send.
+  - coveralls-lcov -v -n coverage/lcov.info > js_coverage.json
+  - coveralls --merge=js_coverage.json
 notifications:
   email: false
   slack:
