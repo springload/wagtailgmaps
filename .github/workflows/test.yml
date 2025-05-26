@@ -1,0 +1,83 @@
+name: Run tests
+
+on:
+  push:
+    paths-ignore:
+      - 'docs/**'
+  pull_request:
+    paths-ignore:
+      - 'docs/**'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  test-postgres:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          - python: '3.9'
+            django: 'Django>=4.2,<4.3'
+            wagtail: 'wagtail>=7.0,<7.1'
+            postgres: 'postgres:15'
+          - python: '3.10'
+            django: 'Django>=5.2,<5.3'
+            wagtail: 'wagtail>=7.0,<7.1'
+            postgres: 'postgres:15'
+          - python: '3.11'
+            django: 'Django>=5.2,<5.3'
+            wagtail: 'wagtail>=7.0,<7.1'
+            postgres: 'postgres:15'
+          - python: '3.12'
+            django: 'Django>=5.2,<5.3'
+            wagtail: 'wagtail>=7.0,<7.1'
+            postgres: 'postgres:15'
+          - python: '3.13'
+            django: 'Django>=5.2,<5.3'
+            wagtail: 'wagtail>=7.0,<7.1'
+            postgres: 'postgres:15'
+
+    services:
+      postgres:
+        image: ${{ matrix.postgres || 'postgres:15' }}
+        env:
+          POSTGRES_PASSWORD: postgres
+        ports:
+          - 5432:5432
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Set up Python ${{ matrix.python }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+          # cache: 'pip' # we can have this back if we add pyproject.toml
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e '.[testing]' --config-settings editable_mode=strict
+          pip install "${{ matrix.django }}"
+          pip install "${{ matrix.wagtail }}"
+          ${{ matrix.install_extras }}
+      - name: Test
+        run: |
+          coverage run --parallel-mode --source wagtail runtests.py ${{ matrix.parallel }}
+        env:
+          DATABASE_ENGINE: django.db.backends.postgresql
+          DATABASE_HOST: localhost
+          DATABASE_USER: postgres
+          DATABASE_PASSWORD: postgres
+      - name: Upload coverage data
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-data-${{ github.job }}-${{ strategy.job-index }}
+          path: .coverage.*
+          include-hidden-files: true

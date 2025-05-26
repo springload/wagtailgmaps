@@ -23,8 +23,8 @@ testing_extras = [
     "flake8-colors>=0.1.6,<1",
     "isort==4.2.5",
     # For test site
-    "django~=5.2",
-    "wagtail~=7.0.0",
+    "Django>=4.2",
+    "wagtail>=7.0.0",
 ]
 
 # Documentation dependencies
