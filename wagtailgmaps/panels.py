@@ -12,6 +12,15 @@ class MapFieldPanel(FieldPanel):
         self.zoom = kwargs.pop("zoom", getattr(settings, "WAGTAIL_ADDRESS_MAP_ZOOM", 8))
         self.latlng = kwargs.pop("latlng", False)
 
+        kwargs["widget"] = kwargs.get(
+            "widget",
+            MapInput(
+                default_centre=self.default_centre,
+                zoom=self.zoom,
+                latlngMode=self.latlng,
+            ),
+        )
+
         super().__init__(field_name, *args, **kwargs)
 
     def clone(self):
@@ -27,11 +36,3 @@ class MapFieldPanel(FieldPanel):
         classes = super().classes()
         classes.append("wagtailgmap")
         return classes
-
-    def widget_overrides(self):
-        map_input = MapInput(
-            default_centre=self.default_centre,
-            zoom=self.zoom,
-            latlngMode=self.latlng,
-        )
-        return {self.field_name: map_input}

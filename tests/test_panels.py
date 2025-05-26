@@ -52,16 +52,3 @@ class EditHandlersTestCase(SimpleTestCase):
         classes = panel.classes()
 
         self.assertIn("wagtailgmap", classes)
-
-    def test_widget_overrides(self):
-        field_name = "field-name"
-        panel = MapFieldPanel(
-            field_name,
-            centre="somewhere",
-            zoom=0,
-            latlng=True,
-        )
-        widget_overrides = panel.widget_overrides()
-
-        self.assertIn(field_name, widget_overrides)
-        self.assertIsInstance(widget_overrides[field_name], MapInput)
