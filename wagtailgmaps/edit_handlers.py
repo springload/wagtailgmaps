@@ -1,7 +1,5 @@
-import json
-
 from django.conf import settings
-from wagtail.admin.edit_handlers import FieldPanel
+from wagtail.admin.panels import FieldPanel
 
 from .widgets import MapInput
 
@@ -34,6 +32,6 @@ class MapFieldPanel(FieldPanel):
         map_input = MapInput(
             default_centre=self.default_centre,
             zoom=self.zoom,
-            latlng=self.latlng,
+            latlngMode=self.latlng,
         )
         return {self.field_name: map_input}

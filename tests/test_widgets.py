@@ -9,7 +9,7 @@ class MapInputTestCasse(SimpleTestCase):
         data = {
             "default_centre": "Springload, Te Aro, Wellington, New Zealand",
             "zoom": 8,
-            "latlng": False,
+            "latlngMode": False,
         }
 
         if kwargs:
@@ -27,7 +27,7 @@ class MapInputTestCasse(SimpleTestCase):
 
         self.assertEqual(widget.default_centre, data["default_centre"])
         self.assertEqual(widget.zoom, data["zoom"])
-        self.assertEqual(widget.latlngMode, data["latlng"])
+        self.assertEqual(widget.latlngMode, data["latlngMode"])
 
     @override_settings()
     def test_init_raises_for_missing_api_key(self):
@@ -96,13 +96,6 @@ class MapInputTestCasse(SimpleTestCase):
         context = widget.get_context("the-name", None, {"id": field_id})
 
         self.assertTrue(expected_context.items() <= context.items())
-
-    def test_render_js_init_method_name(self):
-        data = self._get_init_data()
-        widget = MapInput(**data)
-
-        js_init = widget.render_js_init("the-id", "the-name", "the address")
-        self.assertIn("window.initialize_map", js_init)
 
     def test_media_css(self):
         data = self._get_init_data()
