@@ -1,14 +1,6 @@
 class MapInputController extends window.StimulusModule.Controller {
     static targets = ["map", "textbox"];
     connect() {
-        console.log(
-            "MapInputController has connected:",
-            this.element.innerText,
-            this.mapTarget,
-            this.textboxTarget,
-            this.element.dataset
-        );
-
         // One geocoder var to rule them all
         this.geocoder = new google.maps.Geocoder();
 
@@ -30,9 +22,8 @@ class MapInputController extends window.StimulusModule.Controller {
             document.fireEvent("on" + event.eventType, event);
         }
 
-        console.log("MapInputController connecting complete");
         this.initialize_map({
-            address: this.element.dataset.address,
+            address: this.textboxTarget.value,
             zoom: Number(this.element.dataset.zoom),
             latlngMode: Boolean(this.element.dataset.latlngMode),
         });
@@ -40,15 +31,13 @@ class MapInputController extends window.StimulusModule.Controller {
 
     // Method to initialize a map and all of its related components (usually address input and marker)
     initialize_map(params) {
-        console.log("Starting initialize_map");
-
         const controller = this;
         // Get latlong from address to initialize map
         this.geocoder.geocode(
             { address: params.address },
             function (results, status) {
                 if (status == google.maps.GeocoderStatus.OK) {
-                    controller.set_address(
+                    controller.setAddress(
                         results[0].geometry.location,
                         params.zoom,
                         params.latlngMode
@@ -61,7 +50,6 @@ class MapInputController extends window.StimulusModule.Controller {
                 }
             }
         );
-        console.log("Finishing initialize_map");
     }
 
     // Get formatted address from LatLong position
@@ -110,7 +98,7 @@ class MapInputController extends window.StimulusModule.Controller {
         });
     }
 
-    set_address(latlng, zoom, latlngMode) {
+    setAddress(latlng, zoom, latlngMode) {
         // Create map options and map
         var mapOptions = {
             zoom: zoom,
