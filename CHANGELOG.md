@@ -6,6 +6,23 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [2.0.0] - 2025-04-27
+
+### Removed
+
+- Compatibility with Wagtail 6.3 and before (use wagtailgmap==1.0.1 instead)
+
+### Changed
+
+- (BREAKING) Rename the `latlng` kwarg to `latlngMode` to better reflect it's meaning
+- (BREAKING) Rename `edit_handlers` to `panels` in line with Wagtail Core
+- Migrated admin JS to Stimulus
+- Replace "WidgetWithScript" with a plain input that has `media`
+- Migrate CI testing to Github Actions
+- Update tox file
+- Format code with black
+- Updated test app for modern Django (mostly `url` to `path`)
+
 ## [1.0.1] - 2018-06-25
 
 Thanks to @scisteffan for their contribution.
