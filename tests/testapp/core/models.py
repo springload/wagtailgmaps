@@ -2,7 +2,7 @@ from django.db import models
 from wagtail.admin.panels import MultiFieldPanel
 from wagtail.models import Page
 
-from wagtailgmaps.edit_handlers import MapFieldPanel
+from wagtailgmaps.panels import MapFieldPanel
 
 
 class MapPage(Page):
