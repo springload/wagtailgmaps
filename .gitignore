@@ -13,3 +13,4 @@ tests/testapp/var/media/
 coverage
 coverage_html_report/
 local.py
+.tox

@@ -1,9 +1,19 @@
-{% include "django/forms/widgets/text.html" %}
-<br/>
-<div id="{{ map_id }}"
-     style="width: 100%; height: 300px;"
-     class="map-googlemap">
-    <noscript>
-        <img src="https://maps.google.com/maps/api/staticmap?center={{ address }}&zoom={{ zoom }}&size=600x300&markers={{ address }}&key={{ gmaps_api_key }}">
-    </noscript>
+<div id="mapinput-{{map_id}}"
+    data-controller="map-input"
+    data-address="{{ address }}"
+    data-zoom="{{ zoom }}"
+    data-lat="{{ lat }}"
+    data-lng="{{ lng }}"
+    data-latlngMode="{{ latlngMode }}"
+>
+    {% include "django/forms/widgets/text.html" %}
+    <br/>
+    <div id="{{ map_id }}"
+        data-map-input-target="map"
+        style="width: 100%; height: 300px;"
+        class="map-googlemap">
+        <noscript>
+            <img src="https://maps.google.com/maps/api/staticmap?center={{ address }}&zoom={{ zoom }}&size=600x300&markers={{ address }}&key={{ gmaps_api_key }}">
+        </noscript>
+    </div>
 </div>
