@@ -38,9 +38,13 @@ setup(
     license="MIT",
     description="Google Maps widget for address fields in Wagtail",
     long_description=README,
+    long_description_content_type="text/markdown",
     url="https://github.com/springload/wagtailgmaps/",
     author="Springload",
     author_email="hello@springload.co.nz",
+    project_urls={
+        "Changelog": "https://github.com/springload/wagtailgmaps/blob/master/CHANGELOG.md",
+    },
     classifiers=[
         "Environment :: Web Environment",
         "Framework :: Django",
