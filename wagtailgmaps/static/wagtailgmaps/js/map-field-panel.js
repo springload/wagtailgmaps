@@ -5,6 +5,7 @@ class MapInputController extends window.StimulusModule.Controller {
         this.geocoder = new google.maps.Geocoder();
         this.latlngMode = Boolean(this.element.dataset.latlngmode);
         this.zoom = Number(this.element.dataset.zoom);
+        this.defaultCentre = this.element.dataset.defaultcentre;
 
         // Trigger the event so the maps can start doing their things
         var event; // The custom event that will be created
@@ -129,7 +130,7 @@ class MapInputController extends window.StimulusModule.Controller {
 
         // Set the map to the initial location
         controller.geocodeAddress(
-            initValue,
+            initValue || controller.defaultCentre,
             controller.textboxTarget,
             controller.marker,
             controller.map
