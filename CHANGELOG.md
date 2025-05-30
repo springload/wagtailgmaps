@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+### Fixed
+
+-   latlngMode flag now filters through to the template and works as intended
+
+### Changed
+
+-   JS refactored for a slight usability improvement
+
 ## [2.0.0] - 2025-04-27
 
 ### Removed
