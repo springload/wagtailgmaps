@@ -51,7 +51,7 @@
         # Use the `MapFieldPanel` just like you would use a `FieldPanel`
         content_panels = Page.content_panels + [
             MapFieldPanel('formatted_address'),
-            MapFieldPanel('latlng_address', latlng=True),
+            MapFieldPanel('latlng_address', latlngMode=True),
         ]
     ```
 
