@@ -3,6 +3,9 @@ class MapInputController extends window.StimulusModule.Controller {
     connect() {
         // One geocoder var to rule them all
         this.geocoder = new google.maps.Geocoder();
+        this.latlngMode = Boolean(this.element.dataset.latlngmode);
+        this.zoom = Number(this.element.dataset.zoom);
+        this.defaultCentre = this.element.dataset.defaultcentre;
 
         // Trigger the event so the maps can start doing their things
         var event; // The custom event that will be created
@@ -22,45 +25,19 @@ class MapInputController extends window.StimulusModule.Controller {
             document.fireEvent("on" + event.eventType, event);
         }
 
-        this.initialize_map({
-            address: this.textboxTarget.value,
-            zoom: Number(this.element.dataset.zoom),
-            latlngMode: Boolean(this.element.dataset.latlngMode),
-        });
-    }
-
-    // Method to initialize a map and all of its related components (usually address input and marker)
-    initialize_map(params) {
-        const controller = this;
-        // Get latlong from address to initialize map
-        this.geocoder.geocode(
-            { address: params.address },
-            function (results, status) {
-                if (status == google.maps.GeocoderStatus.OK) {
-                    controller.setAddress(
-                        results[0].geometry.location,
-                        params.zoom,
-                        params.latlngMode
-                    );
-                } else {
-                    alert(
-                        "Geocode was not successful for the following reason: " +
-                            status
-                    );
-                }
-            }
-        );
+        this.initialiseMap(this.textboxTarget.value);
     }
 
     // Get formatted address from LatLong position
-    geocodePosition(pos, input, latlngMode) {
+    geocodePosition(pos, input) {
+        const controller = this;
         this.geocoder.geocode(
             {
                 latLng: pos,
             },
             function (responses) {
                 if (responses && responses.length > 0) {
-                    if (latlngMode) {
+                    if (controller.latlngMode) {
                         input.value =
                             String(responses[0].geometry.location.lat()) +
                             ", " +
@@ -76,11 +53,12 @@ class MapInputController extends window.StimulusModule.Controller {
     }
 
     // Get LatLong position and formatted address from inaccurate address string
-    geocodeAddress(address, input, latlngMode, marker, map) {
+    geocodeAddress(address, input, marker, map) {
+        const controller = this;
         this.geocoder.geocode({ address: address }, function (results, status) {
             if (status == google.maps.GeocoderStatus.OK) {
                 marker.setPosition(results[0].geometry.location);
-                if (latlngMode) {
+                if (controller.latlngMode) {
                     input.value =
                         String(results[0].geometry.location.lat()) +
                         ", " +
@@ -90,64 +68,73 @@ class MapInputController extends window.StimulusModule.Controller {
                 }
                 map.setCenter(results[0].geometry.location);
             } else {
-                alert(
-                    "Geocode was not successful for the following reason: " +
-                        status
-                );
+                alert("Address could not be found: " + status);
             }
         });
     }
 
-    setAddress(latlng, zoom, latlngMode) {
+    initialiseMap(initValue) {
         // Create map options and map
-        var mapOptions = {
-            zoom: zoom,
-            center: latlng,
+        const controller = this;
+        const mapOptions = {
+            zoom: this.zoom,
             mapTypeId: google.maps.MapTypeId.ROADMAP,
         };
 
-        this.map = new google.maps.Map(this.mapTarget, mapOptions);
-        this.marker = new google.maps.Marker({
-            position: latlng,
+        controller.map = new google.maps.Map(controller.mapTarget, mapOptions);
+        controller.marker = new google.maps.Marker({
+            position: mapOptions.position,
             map: this.map,
             draggable: true,
         });
 
-        const controller = this;
         // Set events listeners to update marker/input values/positions
-        google.maps.event.addListener(this.marker, "dragend", function (event) {
-            controller.geocodePosition(
-                controller.marker.getPosition(),
-                controller.textboxTarget,
-                latlngMode
-            );
-        });
-        google.maps.event.addListener(this.map, "click", function (event) {
-            controller.marker.setPosition(event.latLng);
-            controller.geocodePosition(
-                controller.marker.getPosition(),
-                controller.textboxTarget,
-                latlngMode
-            );
-        });
+        google.maps.event.addListener(
+            controller.marker,
+            "dragend",
+            function (event) {
+                controller.geocodePosition(
+                    controller.marker.getPosition(),
+                    controller.textboxTarget
+                );
+            }
+        );
+        google.maps.event.addListener(
+            controller.map,
+            "click",
+            function (event) {
+                controller.marker.setPosition(event.latLng);
+                controller.geocodePosition(
+                    controller.marker.getPosition(),
+                    controller.textboxTarget
+                );
+            }
+        );
 
         // Event listeners to update map when press enter or tab
-        $(this.textboxTarget).bind("enterKey", function (event) {
+        $(controller.textboxTarget).bind("enterKey", function (event) {
             controller.geocodeAddress(
                 this.value,
-                controller,
-                latlngMode,
+                controller.textboxTarget,
                 controller.marker,
                 controller.map
             );
         });
 
-        $(this.textboxTarget).keypress(function (event) {
+        $(controller.textboxTarget).keypress(function (event) {
             if (event.keyCode == 13) {
                 event.preventDefault();
                 $(this).trigger("enterKey");
             }
         });
+
+        // Set the map to the initial location
+        controller.geocodeAddress(
+            initValue || controller.defaultCentre,
+            controller.textboxTarget,
+            controller.marker,
+            controller.map
+        );
     }
 }
 
