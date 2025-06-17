@@ -35,6 +35,7 @@ class MapInput(TextInput):
                 "latlngMode": self.latlngMode,
                 "map_id": self.get_map_id(attrs["id"]),
                 "zoom": self.zoom,
+                "default_centre": self.default_centre,
             }
         )
 

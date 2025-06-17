@@ -13,7 +13,7 @@ class MapPage(Page):
         MapFieldPanel("formatted_address"),
         MultiFieldPanel(
             [
-                MapFieldPanel("latlng_address", latlng=True),
+                MapFieldPanel("latlng_address", latlngMode=True),
             ],
             "LatLng Address (nested)",
         ),

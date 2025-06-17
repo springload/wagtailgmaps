@@ -10,14 +10,14 @@ class MapFieldPanel(FieldPanel):
             "centre", getattr(settings, "WAGTAIL_ADDRESS_MAP_CENTER", None)
         )
         self.zoom = kwargs.pop("zoom", getattr(settings, "WAGTAIL_ADDRESS_MAP_ZOOM", 8))
-        self.latlng = kwargs.pop("latlng", False)
+        self.latlngMode = kwargs.pop("latlngMode", False)
 
         kwargs["widget"] = kwargs.get(
             "widget",
             MapInput(
                 default_centre=self.default_centre,
                 zoom=self.zoom,
-                latlngMode=self.latlng,
+                latlngMode=self.latlngMode,
             ),
         )
 
@@ -28,7 +28,7 @@ class MapFieldPanel(FieldPanel):
 
         instance.default_centre = self.default_centre
         instance.zoom = self.zoom
-        instance.latlng = self.latlng
+        instance.latlngMode = self.latlngMode
 
         return instance
 
