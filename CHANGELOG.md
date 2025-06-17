@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [2.0.1] - 2025-06-18
+
 ### Fixed
 
 -   latlngMode flag now filters through to the template and works as intended
@@ -14,7 +16,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 
--   JS refactored for a slight usability improvement
+-   JS refactored for a slight readability improvement
 
 ## [2.0.0] - 2025-04-27
 
@@ -125,7 +127,8 @@ Thanks to @danreeves, @craigloftus, @urlsangel and @SalahAdDin for their contrib
 
 Initial Release
 
-[Unreleased]: https://github.com/springload/wagtailgmaps/compare/2.0.0...HEAD
+[Unreleased]: https://github.com/springload/wagtailgmaps/compare/2.0.1...HEAD
+[2.0.1]: https://github.com/springload/wagtailgmaps/compare/2.0.0...2.0.1
 [2.0.0]: https://github.com/springload/wagtailgmaps/compare/1.0.1...2.0.0
 [1.0.1]: https://github.com/springload/wagtailgmaps/compare/v1.0...v1.0.1
 [1.0]: https://github.com/springload/wagtailgmaps/compare/v0.4...v1.0
